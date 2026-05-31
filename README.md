@@ -33,15 +33,18 @@ The light cut keeps the same hues as the dark one and only darkens each gem as f
 
 ## Install
 
-**From the Zed registry**
+> Geode isn't in the Zed extension registry **yet** — until it's published, use the manual install below.
+
+**Manual** (works today)
+
+1. Copy `themes/geode.json` into your Zed themes folder (`~/.config/zed/themes/`).
+2. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
+
+**From the Zed registry** _(once published)_
 
 1. Open the command palette — <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>P</kbd> — and run `zed: extensions`.
 2. Search for **Geode** and install.
 3. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
-
-**By hand**
-
-Copy `themes/geode.json` into `~/.config/zed/themes/`, then select it from `theme selector: toggle`.
 
 ## Development
 
