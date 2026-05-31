@@ -1,0 +1,16 @@
+name: Feature request
+description: Suggest an improvement to the palette or token coverage
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to see?
+      description: Describe the change and the problem it solves.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why does it fit Geode?
+      description: How does it stay consistent with the gem palette and the "structure stays neutral" principle?
