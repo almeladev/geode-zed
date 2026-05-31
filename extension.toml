@@ -1,0 +1,7 @@
+id = "geode-theme"
+name = "Geode"
+version = "0.1.0"
+schema_version = 1
+authors = ["Almela <almeladev@users.noreply.github.com>"]
+description = "A calm, gem-toned theme — amethyst, sapphire, citrine, aquamarine and emerald on a violet-tinted base. Ships dark and light variants."
+repository = "https://github.com/almeladev/geode-zed"
