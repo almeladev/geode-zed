@@ -5,8 +5,7 @@
 **A gem-toned theme for [Zed](https://zed.dev).**
 Color only where it carries meaning — dark and light, cut from the same stone.
 
-![Version](https://img.shields.io/badge/version-0.1.0-6e3dc2?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-196b66?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/license-MIT-196b66?style=flat-square)](LICENSE)
 
 </div>
 
