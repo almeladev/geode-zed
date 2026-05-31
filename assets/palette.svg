@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="916" height="392" viewBox="0 0 916 392" font-family="ui-sans-serif,system-ui,sans-serif">
+<text x="12" y="28" font-size="15" font-weight="500" fill="#9089a0">Geode palette — each color on its real background</text>
+<rect x="12" y="46" width="440" height="332" rx="12" fill="#1c1924" stroke="#363142"/>
+<text x="34" y="72" font-size="12" letter-spacing="1" fill="#978fac">DARK</text>
+<text x="430" y="72" text-anchor="end" font-size="12.5" fill="#978fac" font-family="ui-monospace,monospace">#1c1924</text>
+<line x1="28" y1="82" x2="436" y2="82" stroke="#363142"/>
+<rect x="34" y="99" width="13" height="13" rx="3" fill="#bca0ee" stroke="#88888833"/>
+<text x="58" y="110" font-size="14.5" fill="#bca0ee">Amethyst</text>
+<text x="430" y="110" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#bca0ee</text>
+<rect x="34" y="133" width="13" height="13" rx="3" fill="#86a2e4" stroke="#88888833"/>
+<text x="58" y="144" font-size="14.5" fill="#86a2e4">Sapphire</text>
+<text x="430" y="144" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#86a2e4</text>
+<rect x="34" y="167" width="13" height="13" rx="3" fill="#e6cd7a" stroke="#88888833"/>
+<text x="58" y="178" font-size="14.5" fill="#e6cd7a">Citrine</text>
+<text x="430" y="178" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#e6cd7a</text>
+<rect x="34" y="201" width="13" height="13" rx="3" fill="#7eddd6" stroke="#88888833"/>
+<text x="58" y="212" font-size="14.5" fill="#7eddd6">Aquamarine</text>
+<text x="430" y="212" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#7eddd6</text>
+<rect x="34" y="235" width="13" height="13" rx="3" fill="#7dd980" stroke="#88888833"/>
+<text x="58" y="246" font-size="14.5" fill="#7dd980">Emerald</text>
+<text x="430" y="246" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#7dd980</text>
+<rect x="34" y="269" width="13" height="13" rx="3" fill="#eb9aaf" stroke="#88888833"/>
+<text x="58" y="280" font-size="14.5" fill="#eb9aaf">Ruby</text>
+<text x="430" y="280" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#eb9aaf</text>
+<rect x="34" y="303" width="13" height="13" rx="3" fill="#e1e9ef" stroke="#88888833"/>
+<text x="58" y="314" font-size="14.5" fill="#e1e9ef">Foreground</text>
+<text x="430" y="314" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#e1e9ef</text>
+<rect x="34" y="337" width="13" height="13" rx="3" fill="#8d889b" stroke="#88888833"/>
+<text x="58" y="348" font-size="14.5" fill="#8d889b">Comment</text>
+<text x="430" y="348" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#8d889b</text>
+<rect x="464" y="46" width="440" height="332" rx="12" fill="#f6f4fb" stroke="#d5d1e0"/>
+<text x="486" y="72" font-size="12" letter-spacing="1" fill="#696080">LIGHT</text>
+<text x="882" y="72" text-anchor="end" font-size="12.5" fill="#696080" font-family="ui-monospace,monospace">#f6f4fb</text>
+<line x1="480" y1="82" x2="888" y2="82" stroke="#d5d1e0"/>
+<rect x="486" y="99" width="13" height="13" rx="3" fill="#6e3dc2" stroke="#88888833"/>
+<text x="510" y="110" font-size="14.5" fill="#6e3dc2">Amethyst</text>
+<text x="882" y="110" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#6e3dc2</text>
+<rect x="486" y="133" width="13" height="13" rx="3" fill="#315ab9" stroke="#88888833"/>
+<text x="510" y="144" font-size="14.5" fill="#315ab9">Sapphire</text>
+<text x="882" y="144" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#315ab9</text>
+<rect x="486" y="167" width="13" height="13" rx="3" fill="#735c11" stroke="#88888833"/>
+<text x="510" y="178" font-size="14.5" fill="#735c11">Citrine</text>
+<text x="882" y="178" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#735c11</text>
+<rect x="486" y="201" width="13" height="13" rx="3" fill="#196b66" stroke="#88888833"/>
+<text x="510" y="212" font-size="14.5" fill="#196b66">Aquamarine</text>
+<text x="882" y="212" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#196b66</text>
+<rect x="486" y="235" width="13" height="13" rx="3" fill="#216e23" stroke="#88888833"/>
+<text x="510" y="246" font-size="14.5" fill="#216e23">Emerald</text>
+<text x="882" y="246" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#216e23</text>
+<rect x="486" y="269" width="13" height="13" rx="3" fill="#b22a45" stroke="#88888833"/>
+<text x="510" y="280" font-size="14.5" fill="#b22a45">Ruby</text>
+<text x="882" y="280" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#b22a45</text>
+<rect x="486" y="303" width="13" height="13" rx="3" fill="#312a41" stroke="#88888833"/>
+<text x="510" y="314" font-size="14.5" fill="#312a41">Foreground</text>
+<text x="882" y="314" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#312a41</text>
+<rect x="486" y="337" width="13" height="13" rx="3" fill="#6f6783" stroke="#88888833"/>
+<text x="510" y="348" font-size="14.5" fill="#6f6783">Comment</text>
+<text x="882" y="348" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#6f6783</text>
+</svg>
