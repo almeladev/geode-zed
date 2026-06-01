@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1276" height="680" viewBox="0 0 1276 680" font-family="ui-sans-serif,system-ui,sans-serif">
+<rect width="1276" height="680" rx="18" fill="#100d16"/>
+<text x="26" y="42" font-size="21" fill="#e1e9ef" font-weight="700">Geode v1.0.0 — colored properties + accessibility</text>
+<text x="26" y="68" font-size="13.5" fill="#8a83a0">Properties in periwinkle · legible line numbers and placeholders · terminal "white" visible in the light variant</text>
+<rect x="24" y="92" width="600" height="560" rx="12" fill="#1c1924" stroke="#363142"/>
+<clipPath id="clip24"><rect x="24" y="92" width="600" height="560" rx="12"/></clipPath>
+<g clip-path="url(#clip24)">
+<rect x="24" y="92" width="600" height="36" fill="#211e2a"/>
+<line x1="24" y1="128" x2="624" y2="128" stroke="#363142"/>
+<circle cx="42" cy="110" r="4" fill="#eb9aaf"/>
+<circle cx="57" cy="110" r="4" fill="#e6cd7a"/>
+<circle cx="72" cy="110" r="4" fill="#7dd980"/>
+<text x="610" y="114" text-anchor="end" font-size="12.5" fill="#978fac" font-family="ui-sans-serif,system-ui,sans-serif">Geode</text>
+<rect x="102" y="142" width="504" height="22" rx="6" fill="#211e2a" stroke="#363142"/>
+<text x="112" y="157" font-size="12" fill="#8c85a0" font-family="ui-sans-serif,system-ui,sans-serif">Search project… (placeholder)</text>
+<line x1="70" y1="174" x2="70" y2="566" stroke="#363142"/>
+<text x="62" y="184" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">1</text>
+<text x="82" y="184" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#bca0ee">interface </tspan><tspan fill="#e6cd7a">User</tspan><tspan fill="#978fac"> {</tspan></text>
+<text x="62" y="206" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">2</text>
+<text x="82" y="206" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#a9b6e6">id</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e6cd7a">number</tspan></text>
+<text x="62" y="228" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">3</text>
+<text x="82" y="228" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#a9b6e6">profile</tspan><tspan fill="#978fac">: { </tspan><tspan fill="#a9b6e6">name</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e6cd7a">string</tspan><tspan fill="#978fac">; </tspan><tspan fill="#a9b6e6">active</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e6cd7a">boolean</tspan><tspan fill="#978fac"> }</tspan></text>
+<text x="62" y="250" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">4</text>
+<text x="82" y="250" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">}</tspan></text>
+<text x="62" y="272" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">5</text>
+<text x="62" y="294" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">6</text>
+<text x="82" y="294" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#bca0ee">async function </tspan><tspan fill="#86a3e4">loadUser</tspan><tspan fill="#978fac">(</tspan><tspan fill="#e1e9ef">id</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e6cd7a">number</tspan><tspan fill="#978fac">): </tspan><tspan fill="#e6cd7a">Promise</tspan><tspan fill="#978fac">&lt;</tspan><tspan fill="#e6cd7a">User</tspan><tspan fill="#978fac">&gt; {</tspan></text>
+<text x="62" y="316" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">7</text>
+<text x="82" y="316" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#bca0ee">const </tspan><tspan fill="#e1e9ef">res</tspan><tspan fill="#978fac"> = </tspan><tspan fill="#bca0ee">await </tspan><tspan fill="#e1e9ef">client</tspan><tspan fill="#978fac">.</tspan><tspan fill="#86a3e4">get</tspan><tspan fill="#978fac">(</tspan><tspan fill="#7dd980">`/users/${</tspan><tspan fill="#e1e9ef">id</tspan><tspan fill="#7dd980">}`</tspan><tspan fill="#978fac">)</tspan></text>
+<text x="62" y="338" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">8</text>
+<text x="82" y="338" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#bca0ee">const </tspan><tspan fill="#e1e9ef">data</tspan><tspan fill="#978fac"> = </tspan><tspan fill="#e1e9ef">res</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">data</tspan></text>
+<text x="62" y="360" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">9</text>
+<text x="82" y="360" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#bca0ee">return </tspan><tspan fill="#978fac">{</tspan></text>
+<text x="62" y="382" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">10</text>
+<text x="82" y="382" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">    </tspan><tspan fill="#a9b6e6">id</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e1e9ef">data</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">id</tspan><tspan fill="#978fac">,</tspan></text>
+<text x="62" y="404" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">11</text>
+<text x="82" y="404" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">    </tspan><tspan fill="#a9b6e6">name</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e1e9ef">data</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">profile</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">name</tspan><tspan fill="#978fac">,</tspan></text>
+<text x="62" y="426" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">12</text>
+<text x="82" y="426" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">    </tspan><tspan fill="#a9b6e6">active</tspan><tspan fill="#978fac">: </tspan><tspan fill="#e1e9ef">data</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">profile</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">active</tspan><tspan fill="#978fac"> ?? </tspan><tspan fill="#7eddd6">false</tspan></text>
+<text x="62" y="448" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">13</text>
+<text x="82" y="448" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">  </tspan><tspan fill="#978fac">}</tspan></text>
+<text x="62" y="470" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">14</text>
+<text x="82" y="470" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">}</tspan></text>
+<text x="62" y="492" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">15</text>
+<text x="62" y="514" text-anchor="end" font-size="11.5" fill="#8b84a0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">16</text>
+<text x="82" y="514" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#bca0ee">const </tspan><tspan fill="#e1e9ef">user</tspan><tspan fill="#978fac"> = </tspan><tspan fill="#bca0ee">await </tspan><tspan fill="#86a3e4">loadUser</tspan><tspan fill="#978fac">(</tspan><tspan fill="#7eddd6">42</tspan><tspan fill="#978fac">)</tspan></text>
+<rect x="71" y="521" width="552" height="22" fill="#221f2e"/>
+<text x="62" y="536" text-anchor="end" font-size="11.5" fill="#bca0ee" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">17</text>
+<text x="82" y="536" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#e1e9ef">console</tspan><tspan fill="#978fac">.</tspan><tspan fill="#86a3e4">log</tspan><tspan fill="#978fac">(</tspan><tspan fill="#e1e9ef">user</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">profile</tspan><tspan fill="#978fac">.</tspan><tspan fill="#a9b6e6">name</tspan><tspan fill="#978fac">)</tspan></text>
+<rect x="24" y="576" width="600" height="76" fill="#1c1924"/>
+<line x1="24" y1="576" x2="624" y2="576" stroke="#363142"/>
+<text x="40" y="596" font-size="10.5" fill="#978fac" font-family="ui-sans-serif,system-ui,sans-serif" letter-spacing="0.8">TERMINAL</text>
+<text x="40" y="616" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#7dd980">$ </tspan><tspan fill="#e1e9ef">node </tspan><tspan fill="#86a3e4">app.js</tspan></text>
+<text x="40" y="638" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#978fac">→ </tspan><tspan fill="#bac5cf">Ada — profile loaded (active)</tspan></text>
+</g>
+<rect x="652" y="92" width="600" height="560" rx="12" fill="#f6f4fb" stroke="#d5d1e0"/>
+<clipPath id="clip652"><rect x="652" y="92" width="600" height="560" rx="12"/></clipPath>
+<g clip-path="url(#clip652)">
+<rect x="652" y="92" width="600" height="36" fill="#eeebf4"/>
+<line x1="652" y1="128" x2="1252" y2="128" stroke="#d5d1e0"/>
+<circle cx="670" cy="110" r="4" fill="#b22a45"/>
+<circle cx="685" cy="110" r="4" fill="#735c11"/>
+<circle cx="700" cy="110" r="4" fill="#216e23"/>
+<text x="1238" y="114" text-anchor="end" font-size="12.5" fill="#696080" font-family="ui-sans-serif,system-ui,sans-serif">Geode Light</text>
+<rect x="730" y="142" width="504" height="22" rx="6" fill="#eeebf4" stroke="#d5d1e0"/>
+<text x="740" y="157" font-size="12" fill="#6a647b" font-family="ui-sans-serif,system-ui,sans-serif">Search project… (placeholder)</text>
+<line x1="698" y1="174" x2="698" y2="566" stroke="#d5d1e0"/>
+<text x="690" y="184" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">1</text>
+<text x="710" y="184" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#6e3dc2">interface </tspan><tspan fill="#735c11">User</tspan><tspan fill="#696080"> {</tspan></text>
+<text x="690" y="206" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">2</text>
+<text x="710" y="206" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#444d99">id</tspan><tspan fill="#696080">: </tspan><tspan fill="#735c11">number</tspan></text>
+<text x="690" y="228" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">3</text>
+<text x="710" y="228" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#444d99">profile</tspan><tspan fill="#696080">: { </tspan><tspan fill="#444d99">name</tspan><tspan fill="#696080">: </tspan><tspan fill="#735c11">string</tspan><tspan fill="#696080">; </tspan><tspan fill="#444d99">active</tspan><tspan fill="#696080">: </tspan><tspan fill="#735c11">boolean</tspan><tspan fill="#696080"> }</tspan></text>
+<text x="690" y="250" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">4</text>
+<text x="710" y="250" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">}</tspan></text>
+<text x="690" y="272" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">5</text>
+<text x="690" y="294" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">6</text>
+<text x="710" y="294" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#6e3dc2">async function </tspan><tspan fill="#315ab9">loadUser</tspan><tspan fill="#696080">(</tspan><tspan fill="#312a41">id</tspan><tspan fill="#696080">: </tspan><tspan fill="#735c11">number</tspan><tspan fill="#696080">): </tspan><tspan fill="#735c11">Promise</tspan><tspan fill="#696080">&lt;</tspan><tspan fill="#735c11">User</tspan><tspan fill="#696080">&gt; {</tspan></text>
+<text x="690" y="316" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">7</text>
+<text x="710" y="316" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#6e3dc2">const </tspan><tspan fill="#312a41">res</tspan><tspan fill="#696080"> = </tspan><tspan fill="#6e3dc2">await </tspan><tspan fill="#312a41">client</tspan><tspan fill="#696080">.</tspan><tspan fill="#315ab9">get</tspan><tspan fill="#696080">(</tspan><tspan fill="#216e23">`/users/${</tspan><tspan fill="#312a41">id</tspan><tspan fill="#216e23">}`</tspan><tspan fill="#696080">)</tspan></text>
+<text x="690" y="338" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">8</text>
+<text x="710" y="338" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#6e3dc2">const </tspan><tspan fill="#312a41">data</tspan><tspan fill="#696080"> = </tspan><tspan fill="#312a41">res</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">data</tspan></text>
+<text x="690" y="360" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">9</text>
+<text x="710" y="360" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#6e3dc2">return </tspan><tspan fill="#696080">{</tspan></text>
+<text x="690" y="382" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">10</text>
+<text x="710" y="382" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">    </tspan><tspan fill="#444d99">id</tspan><tspan fill="#696080">: </tspan><tspan fill="#312a41">data</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">id</tspan><tspan fill="#696080">,</tspan></text>
+<text x="690" y="404" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">11</text>
+<text x="710" y="404" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">    </tspan><tspan fill="#444d99">name</tspan><tspan fill="#696080">: </tspan><tspan fill="#312a41">data</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">profile</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">name</tspan><tspan fill="#696080">,</tspan></text>
+<text x="690" y="426" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">12</text>
+<text x="710" y="426" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">    </tspan><tspan fill="#444d99">active</tspan><tspan fill="#696080">: </tspan><tspan fill="#312a41">data</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">profile</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">active</tspan><tspan fill="#696080"> ?? </tspan><tspan fill="#196b66">false</tspan></text>
+<text x="690" y="448" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">13</text>
+<text x="710" y="448" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">  </tspan><tspan fill="#696080">}</tspan></text>
+<text x="690" y="470" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">14</text>
+<text x="710" y="470" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">}</tspan></text>
+<text x="690" y="492" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">15</text>
+<text x="690" y="514" text-anchor="end" font-size="11.5" fill="#6e6880" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">16</text>
+<text x="710" y="514" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#6e3dc2">const </tspan><tspan fill="#312a41">user</tspan><tspan fill="#696080"> = </tspan><tspan fill="#6e3dc2">await </tspan><tspan fill="#315ab9">loadUser</tspan><tspan fill="#696080">(</tspan><tspan fill="#196b66">42</tspan><tspan fill="#696080">)</tspan></text>
+<rect x="699" y="521" width="552" height="22" fill="#efeaf7"/>
+<text x="690" y="536" text-anchor="end" font-size="11.5" fill="#6e3dc2" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">17</text>
+<text x="710" y="536" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#312a41">console</tspan><tspan fill="#696080">.</tspan><tspan fill="#315ab9">log</tspan><tspan fill="#696080">(</tspan><tspan fill="#312a41">user</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">profile</tspan><tspan fill="#696080">.</tspan><tspan fill="#444d99">name</tspan><tspan fill="#696080">)</tspan></text>
+<rect x="652" y="576" width="600" height="76" fill="#f6f4fb"/>
+<line x1="652" y1="576" x2="1252" y2="576" stroke="#d5d1e0"/>
+<text x="668" y="596" font-size="10.5" fill="#696080" font-family="ui-sans-serif,system-ui,sans-serif" letter-spacing="0.8">TERMINAL</text>
+<text x="668" y="616" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#216e23">$ </tspan><tspan fill="#312a41">node </tspan><tspan fill="#315ab9">app.js</tspan></text>
+<text x="668" y="638" font-size="13" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" xml:space="preserve"><tspan fill="#696080">→ </tspan><tspan fill="#4e495e">Ada — profile loaded (active)</tspan></text>
+</g>
+</svg>

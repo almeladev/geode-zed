@@ -54,18 +54,28 @@ Please keep changes consistent with the ideas that make Geode coherent:
 
 - **Amethyst is the hero accent.** Keep it the most prominent color and the one
   used across interactive UI (selection, focus, active line).
-- **Structure stays neutral.** Variables, parameters and properties use the
-  foreground color; reserve gems for keywords, types, functions, strings and
-  literals.
+- **Structure has its own color.** Variables and parameters use the foreground
+  color; members and properties (`property`, `field`, `variable.member`) use
+  **periwinkle** (`#a9b6e6` dark / `#444d99` light) — a calm blue-lavender that
+  reads as the shape of the data. It is not an accent (not in `accents`), so the
+  40° rule doesn't apply, but it must clear AA and stay visibly distinct from
+  both sapphire functions and citrine types. Reserve the gems for keywords,
+  types, functions, strings and literals.
 - **One color, one meaning.** Ruby is for errors and removed diff lines only.
 - **Keep the gems a family.** Accents share a tonal register and a minimum hue
   separation of ~40°. Both variants share the same hues. Note the amethyst↔sapphire
   pair already sits right at that 40° floor, so retune hues carefully — the
   validator will reject anything that closes the gap further.
-- **Respect contrast.** Every meaningful token must meet WCAG AA against its
-  background in both the dark and light variants. The one exception is
-  predictive (ghost) text: it is intentionally dim to read as a suggestion, so
-  don't push it up to AA — the CI validator skips it for that reason.
+- **Respect contrast — all of it.** Every meaningful token must meet WCAG AA
+  against its background in both variants. So must the UI chrome you read all day
+  (`text.muted`, `text.placeholder`, `editor.line_number`, muted icons) and the
+  eight base terminal colors — `validate_theme.py` now enforces these too, so a
+  regression fails CI. The one exception is predictive (ghost) text: it is
+  intentionally dim to read as a suggestion, so the validator skips it.
+- **Don't lean on red↔green alone.** Color-blind readers can't separate ruby from
+  emerald, so diffs and diagnostics must keep working through Zed's structural
+  cues (gutter +/− markers, diagnostic icons) and the semantic `*.background`
+  tints — never through hue by itself.
 
 > **Collaboration cursors are the one exception to the six-gem set.** Zed needs
 > eight distinct `players` colors, so the six gems are extended with two extra
