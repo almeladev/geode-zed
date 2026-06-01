@@ -30,21 +30,30 @@ A few principles hold the palette together:
 
 The light cut keeps the same hues as the dark one and only darkens each gem as far as a pale background needs — yellows and teals deepen into bronze and forest rather than washing out.
 
+**What the gems mean** — color is spent on roles, not decoration:
+
+- **Amethyst** — keywords, and the UI's signature: selection, focus, the active line
+- **Sapphire** — functions and namespaces
+- **Citrine** — types, enums and attributes
+- **Aquamarine** — constants, numbers and booleans
+- **Emerald** — strings
+- **Ruby** — errors and removed lines, and nothing else
+
+Variables, parameters and properties stay neutral on purpose, so the eye lands on the gems.
+
 ## Install
 
-> Geode isn't in the Zed extension registry **yet** — until it's published, use the manual install below.
-
-**Manual** (works today)
-
-1. Copy `themes/geode.json` into your Zed themes folder — `~/.config/zed/themes/`
-   on macOS and Linux, or `%APPDATA%\Zed\themes\` on Windows.
-2. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
-
-**From the Zed registry** _(once published)_
+**From the Zed registry** (recommended)
 
 1. Open the command palette — <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>P</kbd> — and run `zed: extensions`.
 2. Search for **Geode** and install.
 3. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
+
+**Manual** (for development or pinning a version)
+
+1. Copy `themes/geode.json` into your Zed themes folder — `~/.config/zed/themes/`
+   on macOS and Linux, or `%APPDATA%\Zed\themes\` on Windows.
+2. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
 
 ## Development
 

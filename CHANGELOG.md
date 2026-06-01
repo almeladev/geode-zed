@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-01
+
 ### Added
 
 - A **vendored** copy of Zed's theme JSON Schema at
@@ -37,6 +39,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The README now leads with installing Geode from the **Zed extension registry**
+  (it has been published) instead of the manual copy, and adds a "What the gems
+  mean" rundown mapping each accent to the syntax it carries.
 - The CI workflow pins Python (`actions/setup-python`) and now also runs when
   `extension.toml` or `CHANGELOG.md` change. It now declares least-privilege
   `permissions` and cancels superseded in-progress runs per ref.
@@ -80,5 +85,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Note in `CONTRIBUTING.md` documenting the two extra collaboration-cursor tints
   that sit outside the six-gem semantic palette.
 
-[Unreleased]: https://github.com/almeladev/geode-zed/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/almeladev/geode-zed/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
