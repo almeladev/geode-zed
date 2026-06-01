@@ -11,9 +11,9 @@
         "accents": [
           "#bca0eeff",
           "#86a3e4ff",
-          "#7dd980ff",
           "#e6cd7aff",
           "#7eddd6ff",
+          "#7dd980ff",
           "#eb9aafff"
         ],
         "surface.background": "#211e2aff",
@@ -471,9 +471,9 @@
         "accents": [
           "#6e3dc2ff",
           "#315ab9ff",
-          "#216e23ff",
           "#735c11ff",
           "#196b66ff",
+          "#216e23ff",
           "#b22a45ff"
         ],
         "surface.background": "#eeebf4ff",
