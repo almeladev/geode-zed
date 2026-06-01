@@ -28,6 +28,12 @@ Please keep changes consistent with the ideas that make Geode coherent:
 - **Respect contrast.** Every meaningful token must meet WCAG AA against its
   background in both the dark and light variants.
 
+> **Collaboration cursors are the one exception to the six-gem set.** Zed needs
+> eight distinct `players` colors, so the six gems are extended with two extra
+> tints — a lighter amethyst and a warm coral/amber — used only for collaborator
+> cursors and selections. They never carry syntax or UI meaning, so they stay
+> outside the semantic palette.
+
 ## Submitting changes
 
 - Use clear, [Conventional Commit](https://www.conventionalcommits.org) messages

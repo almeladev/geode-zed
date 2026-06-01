@@ -1,0 +1,20 @@
+name: Validate theme
+
+on:
+  push:
+    paths:
+      - "themes/**"
+      - ".github/workflows/validate.yml"
+  pull_request:
+    paths:
+      - "themes/**"
+      - ".github/workflows/validate.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate themes/geode.json
+        run: python3 .github/scripts/validate_theme.py themes/geode.json
