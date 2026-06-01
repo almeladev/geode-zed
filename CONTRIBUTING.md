@@ -20,14 +20,19 @@ locally before opening a pull request:
 
 ```sh
 python3 .github/scripts/validate_theme.py themes/geode.json
+python3 .github/scripts/check_asset_colors.py
 python3 .github/scripts/check_version_sync.py
 python3 .github/scripts/check_conventional_commits.py   # checks origin/main..HEAD
 ```
 
 The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
 accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
-on the terminal background). The second guards that any released `version` in
-`extension.toml` has a matching section in `CHANGELOG.md`. The third checks that
+on the terminal background). The second keeps the README artwork honest: every
+color in `assets/palette.svg` and `assets/preview.svg` must trace back to a
+color the theme defines, so a token you re-tune can't silently drift out of date
+in the swatches and preview (`assets/preview-v1.svg` is a frozen v1.0.0 snapshot
+and is deliberately excluded). The third guards that any released `version` in
+`extension.toml` has a matching section in `CHANGELOG.md`. The fourth checks that
 your commit subjects follow [Conventional Commits](https://www.conventionalcommits.org).
 
 One more check runs in CI — it validates the theme against Zed's theme JSON
