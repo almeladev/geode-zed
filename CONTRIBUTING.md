@@ -26,7 +26,9 @@ Please keep changes consistent with the ideas that make Geode coherent:
 - **Keep the gems a family.** Accents share a tonal register and a minimum hue
   separation of ~40°. Both variants share the same hues.
 - **Respect contrast.** Every meaningful token must meet WCAG AA against its
-  background in both the dark and light variants.
+  background in both the dark and light variants. The one exception is
+  predictive (ghost) text: it is intentionally dim to read as a suggestion, so
+  don't push it up to AA — the CI validator skips it for that reason.
 
 > **Collaboration cursors are the one exception to the six-gem set.** Zed needs
 > eight distinct `players` colors, so the six gems are extended with two extra

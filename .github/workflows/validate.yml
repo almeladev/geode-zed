@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - "themes/**"
+      - ".github/scripts/**"
       - ".github/workflows/validate.yml"
   pull_request:
     paths:
       - "themes/**"
+      - ".github/scripts/**"
       - ".github/workflows/validate.yml"
 
 jobs:
