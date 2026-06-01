@@ -21,6 +21,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   line a clearer cue at a glance. Every meaningful token still clears AA on the
   active line (the lowest, `comment`, sits at 4.53:1).
 
+### Added
+
+- A CI guard (`.github/scripts/check_asset_colors.py`) that keeps the README's
+  artwork in sync with the theme: every color in `assets/palette.svg` and
+  `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
+  `assets/preview-v1.svg` is excluded as a frozen v1.0.0 snapshot.
+
+### Fixed
+
+- The dark **periwinkle** in `assets/palette.svg` and `assets/preview.svg` now
+  shows `#a8afe6`, matching the theme — the swatch and preview had lagged behind
+  the member/property re-tune above.
+
+### Removed
+
+- The unused `.github/scripts/_gen_v1_previews.py` generator. `preview-v1.svg`
+  is a committed historical snapshot, so the one-off script was dead weight.
+
 ## [1.0.0] - 2026-06-01
 
 ### Added

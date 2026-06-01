@@ -38,6 +38,9 @@ jobs:
       - name: Validate themes/geode.json
         run: python3 .github/scripts/validate_theme.py themes/geode.json
 
+      - name: Check the SVG assets stay in sync with the theme
+        run: python3 .github/scripts/check_asset_colors.py
+
       - name: Check version is documented in the changelog
         run: python3 .github/scripts/check_version_sync.py
 
