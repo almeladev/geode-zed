@@ -7,8 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing has been released yet. The first tagged release will move the entries
-below under a versioned heading.
+## [0.1.0] - 2026-06-01
 
 ### Added
 
@@ -22,7 +21,13 @@ below under a versioned heading.
 - WCAG AA contrast for every meaningful token in both variants.
 - CI workflow that validates `themes/geode.json` (valid JSON, both variants
   present, all colors well-formed `#RRGGBB`/`#RRGGBBAA`).
+- CI now also enforces Geode's quality promises automatically: WCAG AA (4.5:1)
+  for meaningful tokens over the editor background and the active line, the
+  AA-large 3:1 floor over selection and search highlights, and the ~40° minimum
+  hue separation between accents. The workflow also runs when the validator
+  script itself changes.
 - Note in `CONTRIBUTING.md` documenting the two extra collaboration-cursor tints
   that sit outside the six-gem semantic palette.
 
-[Unreleased]: https://github.com/almeladev/geode-zed/commits/main
+[Unreleased]: https://github.com/almeladev/geode-zed/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0

@@ -36,7 +36,8 @@ The light cut keeps the same hues as the dark one and only darkens each gem as f
 
 **Manual** (works today)
 
-1. Copy `themes/geode.json` into your Zed themes folder (`~/.config/zed/themes/`).
+1. Copy `themes/geode.json` into your Zed themes folder — `~/.config/zed/themes/`
+   on macOS and Linux, or `%APPDATA%\Zed\themes\` on Windows.
 2. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
 
 **From the Zed registry** _(once published)_
