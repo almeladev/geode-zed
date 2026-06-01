@@ -24,9 +24,9 @@
 <rect x="34" y="271" width="13" height="13" rx="3" fill="#e1e9ef"/>
 <text x="58" y="282" font-size="14.5" fill="#e1e9ef">Foreground</text>
 <text x="430" y="282" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#e1e9ef</text>
-<rect x="34" y="305" width="13" height="13" rx="3" fill="#a8afe6"/>
-<text x="58" y="316" font-size="14.5" fill="#a8afe6">Periwinkle</text>
-<text x="430" y="316" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#a8afe6</text>
+<rect x="34" y="305" width="13" height="13" rx="3" fill="#b9bdf0"/>
+<text x="58" y="316" font-size="14.5" fill="#b9bdf0">Periwinkle</text>
+<text x="430" y="316" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#b9bdf0</text>
 <rect x="34" y="339" width="13" height="13" rx="3" fill="#9690a4"/>
 <text x="58" y="350" font-size="14.5" fill="#9690a4">Comment</text>
 <text x="430" y="350" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#9690a4</text>
@@ -55,9 +55,9 @@
 <rect x="486" y="271" width="13" height="13" rx="3" fill="#312a41"/>
 <text x="510" y="282" font-size="14.5" fill="#312a41">Foreground</text>
 <text x="882" y="282" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#312a41</text>
-<rect x="486" y="305" width="13" height="13" rx="3" fill="#444d99"/>
-<text x="510" y="316" font-size="14.5" fill="#444d99">Periwinkle</text>
-<text x="882" y="316" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#444d99</text>
+<rect x="486" y="305" width="13" height="13" rx="3" fill="#3a4090"/>
+<text x="510" y="316" font-size="14.5" fill="#3a4090">Periwinkle</text>
+<text x="882" y="316" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#3a4090</text>
 <rect x="486" y="339" width="13" height="13" rx="3" fill="#665d79"/>
 <text x="510" y="350" font-size="14.5" fill="#665d79">Comment</text>
 <text x="882" y="350" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#665d79</text>
