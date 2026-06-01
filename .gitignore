@@ -10,5 +10,9 @@
 # Zed
 .zed/
 
+# Python (validator scripts)
+__pycache__/
+*.pyc
+
 # Logs
 *.log

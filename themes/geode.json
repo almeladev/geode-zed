@@ -620,7 +620,7 @@
         "terminal.ansi.bright_cyan": "#2f9cafff",
         "terminal.ansi.dim_cyan": "#155a66ff",
         "terminal.ansi.white": "#b7b3c1ff",
-        "terminal.ansi.bright_white": "#f6f4fbff",
+        "terminal.ansi.bright_white": "#e3e0ebff",
         "terminal.ansi.dim_white": "#938da5ff",
         "syntax": {
           "attribute": {
