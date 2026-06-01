@@ -19,6 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The contrast checks now also cover the selected-element, read-highlight and
   write-highlight overlays, not just selection and search matches.
 - An `.editorconfig` documenting the repository's whitespace conventions.
+- `check_schema.py` and an advisory CI step that validate the theme against
+  Zed's published JSON Schema (the `$schema` URL in the theme). It degrades
+  gracefully — skipping when the schema can't be fetched or `jsonschema` isn't
+  installed — so it never produces a flaky build.
+- `check_conventional_commits.py` and a `Lint commits` workflow that enforce
+  [Conventional Commits](https://www.conventionalcommits.org) on the commits a
+  pull request adds (the convention `CONTRIBUTING.md` already asks for).
 
 ### Changed
 

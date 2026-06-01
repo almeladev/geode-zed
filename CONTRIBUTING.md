@@ -21,12 +21,24 @@ locally before opening a pull request:
 ```sh
 python3 .github/scripts/validate_theme.py themes/geode.json
 python3 .github/scripts/check_version_sync.py
+python3 .github/scripts/check_conventional_commits.py   # checks origin/main..HEAD
 ```
 
 The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
 accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
 on the terminal background). The second guards that any released `version` in
-`extension.toml` has a matching section in `CHANGELOG.md`.
+`extension.toml` has a matching section in `CHANGELOG.md`. The third checks that
+your commit subjects follow [Conventional Commits](https://www.conventionalcommits.org).
+
+One more check runs in CI and is *advisory* — it validates the theme against
+Zed's published JSON Schema (the `$schema` URL in `themes/geode.json`). It needs
+network access and the `jsonschema` package, so it skips cleanly when either is
+unavailable:
+
+```sh
+python3 -m pip install jsonschema
+python3 .github/scripts/check_schema.py themes/geode.json
+```
 
 ## Design principles
 
