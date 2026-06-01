@@ -16,17 +16,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `extension.toml` always has a matching section in `CHANGELOG.md`.
 - `CONTRIBUTING.md` and the PR template now document running the validators
   locally before pushing.
+- The contrast checks now also cover the selected-element, read-highlight and
+  write-highlight overlays, not just selection and search matches.
+- An `.editorconfig` documenting the repository's whitespace conventions.
 
 ### Changed
 
 - The CI workflow pins Python (`actions/setup-python`) and now also runs when
-  `extension.toml` or `CHANGELOG.md` change.
+  `extension.toml` or `CHANGELOG.md` change. It now declares least-privilege
+  `permissions` and cancels superseded in-progress runs per ref.
+- `Geode Light`'s `terminal.ansi.bright_white` no longer equals the terminal
+  background, so bright-white terminal text stays visible.
 
 ### Fixed
 
 - The theme validator no longer crashes with a `KeyError` on a malformed
   variant (missing `editor.background`, `players`, search keys); it reports a
   clear error and checks whatever surfaces do resolve.
+- `check_version_sync.py` no longer leaks file handles (reads both files with a
+  context manager).
 
 ## [0.1.0] - 2026-06-01
 
