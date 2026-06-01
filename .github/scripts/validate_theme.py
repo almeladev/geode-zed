@@ -129,6 +129,10 @@ def check_quality(name, style, errors):
     add_surface("active line", "editor.active_line.background", AA_NORMAL)
     add_surface("search match", "search.match_background", AA_LARGE)
     add_surface("active search match", "search.active_match_background", AA_LARGE)
+    # Overlay backgrounds that also sit on top of meaningful text.
+    add_surface("selected element", "element.selected", AA_LARGE)
+    add_surface("read highlight", "editor.document_highlight.read_background", AA_LARGE)
+    add_surface("write highlight", "editor.document_highlight.write_background", AA_LARGE)
 
     players = style.get("players") or []
     if players and isinstance(players[0], dict) and players[0].get("selection"):
