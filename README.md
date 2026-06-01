@@ -23,8 +23,6 @@ Most dark themes color everything. Geode does the opposite: color goes only on t
 - **Easy on the eyes.** High contrast and color‑blind‑friendly in both, so code stays clear day or night.
 - **Color with meaning.** Only the parts worth finding get color, so your eye lands on the logic, not a rainbow.
 - **Styled everywhere.** Editor, terminal, git changes and diagnostics all match — nothing left unstyled.
-- **Works with your stack.** Looks right in TypeScript, Python, Rust, Go, JSON, Markdown and more.
-- **Nothing to configure.** Install it, pick it, done.
 
 ## Palette
 
