@@ -22,8 +22,10 @@ VERSION_LINE = re.compile(r'^\s*version\s*=\s*"([^"]+)"\s*$', re.MULTILINE)
 
 def main() -> int:
     try:
-        toml = open(EXTENSION_TOML, encoding="utf-8").read()
-        changelog = open(CHANGELOG, encoding="utf-8").read()
+        with open(EXTENSION_TOML, encoding="utf-8") as fh:
+            toml = fh.read()
+        with open(CHANGELOG, encoding="utf-8") as fh:
+            changelog = fh.read()
     except OSError as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
