@@ -5,6 +5,30 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-06-02
+
+### Changed
+
+- **Periwinkle members now separate from sapphire functions by weight.** In
+  1.0.0 members/properties (`#a8afe6` dark / `#444d99` light) sat only ~12° off
+  sapphire functions at nearly the same luminance — a 1.19:1 contrast between
+  the two, so `foo.bar()` read as one flat blue (and was indistinguishable under
+  mild color-vision deficiency). Periwinkle is retuned to `#b9bdf0` (dark) and
+  `#3a4090` (light): same calm lavender hue (~236°), but a lighter dark cut and a
+  deeper light cut lift the member↔function contrast to ~1.40:1 while staying
+  ~26° clear of amethyst keywords. Both tones still clear WCAG AA over the canvas,
+  active line, selection and search (≥ 6.4:1 on every surface). The `palette.svg`
+  and `preview.svg` artwork is updated to match.
+
+### Added
+
+- The theme validator now enforces the member/function separation it couldn't
+  catch before: members and functions share a hue by design, so the accent
+  hue-separation rule can't tell them apart — `check_structure_separation`
+  requires a minimum luminance contrast (`MIN_STRUCTURE_SEPARATION`, 1.30:1)
+  between them instead, so this exact regression fails CI rather than slipping
+  through.
+
 ## [1.0.0] - 2026-06-02
 
 ### Added
@@ -113,5 +137,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[1.0.1]: https://github.com/almeladev/geode-zed/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
