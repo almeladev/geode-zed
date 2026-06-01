@@ -7,6 +7,7 @@ on:
       - "extension.toml"
       - "CHANGELOG.md"
       - ".github/scripts/**"
+      - ".github/schemas/**"
       - ".github/workflows/validate.yml"
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - "extension.toml"
       - "CHANGELOG.md"
       - ".github/scripts/**"
+      - ".github/schemas/**"
       - ".github/workflows/validate.yml"
 
 permissions:
@@ -39,7 +41,7 @@ jobs:
       - name: Check version is documented in the changelog
         run: python3 .github/scripts/check_version_sync.py
 
-      - name: Validate against Zed's published theme schema (advisory)
+      - name: Validate against Zed's theme schema (vendored, offline)
         run: |
           python3 -m pip install --quiet jsonschema
           python3 .github/scripts/check_schema.py themes/geode.json
