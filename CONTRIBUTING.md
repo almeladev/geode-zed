@@ -30,14 +30,22 @@ on the terminal background). The second guards that any released `version` in
 `extension.toml` has a matching section in `CHANGELOG.md`. The third checks that
 your commit subjects follow [Conventional Commits](https://www.conventionalcommits.org).
 
-One more check runs in CI and is *advisory* — it validates the theme against
-Zed's published JSON Schema (the `$schema` URL in `themes/geode.json`). It needs
-network access and the `jsonschema` package, so it skips cleanly when either is
-unavailable:
+One more check runs in CI — it validates the theme against Zed's theme JSON
+Schema. The schema is **vendored** at `.github/schemas/zed-theme-v0.2.0.json`, so
+the check is offline and deterministic; it only needs the `jsonschema` package
+(and skips cleanly without it):
 
 ```sh
 python3 -m pip install jsonschema
 python3 .github/scripts/check_schema.py themes/geode.json
+```
+
+Refresh the vendored schema from upstream when zed.dev is reachable (its CDN
+otherwise rejects automated fetches):
+
+```sh
+curl -fsSL https://zed.dev/schema/themes/v0.2.0.json \
+  -o .github/schemas/zed-theme-v0.2.0.json
 ```
 
 ## Design principles

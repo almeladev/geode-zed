@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A **vendored** copy of Zed's theme JSON Schema at
+  `.github/schemas/zed-theme-v0.2.0.json`. `check_schema.py` now validates
+  against it by default, so the schema check is offline and deterministic
+  instead of a permanent `SKIP` whenever `zed.dev`'s CDN rejects the fetch
+  (HTTP 403). It still falls back to the remote `$schema` URL, then to `SKIP`.
+- The theme validator now warns (non-fatal) when an ANSI `bright_`/`dim_`
+  variant runs the wrong way — a bright that is darker than its base, or a dim
+  that is lighter — which usually means the two were swapped.
 - The theme validator now warns (non-fatal) when a `terminal.ansi.*` color
   collapses to the terminal background and would render invisible — surfacing,
   for example, that `Geode Light`'s `bright_white` equals its terminal canvas.
@@ -32,11 +40,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The CI workflow pins Python (`actions/setup-python`) and now also runs when
   `extension.toml` or `CHANGELOG.md` change. It now declares least-privilege
   `permissions` and cancels superseded in-progress runs per ref.
+- The terminal-invisibility warning now consults an explicit allowlist
+  (`INTENTIONAL_BG_COLLISIONS`), so the dark theme's deliberate `terminal.ansi.black`
+  -on-background no longer emits a permanent warning while a new, *accidental*
+  collision still surfaces.
 - `Geode Light`'s `terminal.ansi.bright_white` no longer equals the terminal
   background, so bright-white terminal text stays visible.
 
 ### Fixed
 
+- The `preview.svg` collaboration-presence dots used a stale amber (`#d9a05a`)
+  that no longer exists in the palette; they now use the actual warm player
+  tints — `#efa880` in the dark window and `#bf6a25` in the light one.
 - The theme validator no longer crashes with a `KeyError` on a malformed
   variant (missing `editor.background`, `players`, search keys); it reports a
   clear error and checks whatever surfaces do resolve.

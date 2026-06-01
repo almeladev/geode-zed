@@ -7,7 +7,7 @@
 <circle cx="37" cy="24.0" r="4.2" fill="#735c11"/>
 <circle cx="51" cy="24.0" r="4.2" fill="#216e23"/>
 <rect x="156" y="17" width="150" height="14" rx="7" fill="none" stroke="#d5d1e0"/>
-<circle cx="732" cy="24.0" r="7.5" fill="#d9a05a"/>
+<circle cx="732" cy="24.0" r="7.5" fill="#bf6a25"/>
 <circle cx="710" cy="24.0" r="2.4" fill="#877f9f"/><circle cx="702" cy="24.0" r="2.4" fill="#877f9f"/>
 <rect x="8" y="40" width="108" height="402" fill="#eeebf4"/><line x1="116" y1="40" x2="116" y2="442" stroke="#d5d1e0"/>
 <line x1="23" y1="53" x2="23" y2="70" stroke="#d3cfde"/>
@@ -161,7 +161,7 @@
 <rect x="536.0" y="55.0" width="52.0" height="6" rx="3" fill="#312a41"/>
 <circle cx="718" cy="58" r="2.2" fill="#877f9f"/><circle cx="726" cy="58" r="2.2" fill="#877f9f"/>
 <line x1="506" y1="76" x2="748" y2="76" stroke="#d5d1e0"/>
-<circle cx="528" cy="95" r="6" fill="#d9a05a"/>
+<circle cx="528" cy="95" r="6" fill="#bf6a25"/>
 <rect x="544.0" y="91.0" width="173.0" height="5" rx="3" fill="#312a41"/>
 <rect x="544.0" y="103.0" width="112.8" height="5" rx="3" fill="#312a41"/>
 <path d="M528 124 L529.4 127.6 L533 129 L529.4 130.4 L528 134 L526.6 130.4 L523 129 L526.6 127.6 Z" fill="#6e3dc2"/>
@@ -206,7 +206,7 @@
 <circle cx="301" cy="34.0" r="4.2" fill="#e6cd7a"/>
 <circle cx="315" cy="34.0" r="4.2" fill="#7dd980"/>
 <rect x="420" y="27" width="150" height="14" rx="7" fill="none" stroke="#363142"/>
-<circle cx="996" cy="34.0" r="7.5" fill="#d9a05a"/>
+<circle cx="996" cy="34.0" r="7.5" fill="#efa880"/>
 <circle cx="974" cy="34.0" r="2.4" fill="#79728c"/><circle cx="966" cy="34.0" r="2.4" fill="#79728c"/>
 <rect x="272" y="50" width="108" height="402" fill="#211e2a"/><line x1="380" y1="50" x2="380" y2="452" stroke="#363142"/>
 <rect x="284" y="67" width="7" height="7" rx="2" fill="#978fac"/>
@@ -378,7 +378,7 @@
 <rect x="800.0" y="65.0" width="52.0" height="6" rx="3" fill="#e1e9ef"/>
 <circle cx="982" cy="68" r="2.2" fill="#79728c"/><circle cx="990" cy="68" r="2.2" fill="#79728c"/>
 <line x1="770" y1="86" x2="1012" y2="86" stroke="#363142"/>
-<circle cx="792" cy="105" r="6" fill="#d9a05a"/>
+<circle cx="792" cy="105" r="6" fill="#efa880"/>
 <rect x="808.0" y="101.0" width="173.0" height="5" rx="3" fill="#e1e9ef"/>
 <rect x="808.0" y="113.0" width="112.8" height="5" rx="3" fill="#e1e9ef"/>
 <path d="M792 134 L793.4 137.6 L797 139 L793.4 140.4 L792 144 L790.6 140.4 L787 139 L790.6 137.6 Z" fill="#bca0ee"/>

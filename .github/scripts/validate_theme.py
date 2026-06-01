@@ -20,9 +20,13 @@ the accessibility/coherence promises Geode makes in its README:
   Warnings (non-fatal)
   - any terminal ANSI color that collapses to the terminal background (so text
     in that color would be invisible) is reported but does not fail the build —
-    a dark theme's "black" sitting on its own background is conventional, while
     a light theme's "bright_white" doing the same is a readability trade-off
-    worth surfacing.
+    worth surfacing. Deliberate, conventional collisions (a dark theme's "black"
+    being its own background) are allowlisted in INTENTIONAL_BG_COLLISIONS so
+    only an *accidental* new collision surfaces.
+  - any ANSI bright_/dim_ variant whose lightness runs the wrong way (a bright
+    that is darker than its base, or a dim that is lighter) is flagged as a
+    likely swap.
 
 The predictive/ghost-text token is intentionally dim and is excluded from the
 contrast checks (it is not a "meaningful" token).
@@ -44,6 +48,17 @@ MIN_HUE_SEPARATION = 40.0
 # Syntax tokens that are deliberately low-contrast (suggestion previews) and so
 # are excluded from the AA checks. Keep this list small and explicit.
 DIM_TOKENS = {"predictive"}
+
+# The eight ANSI color slots, each of which also has a bright_ and dim_ variant.
+ANSI_BASES = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
+
+# (theme name, terminal key) pairs whose collapse into the terminal background is
+# a deliberate, conventional choice — a dark theme's ANSI "black" *is* its
+# background. Listing them explicitly means a new, *accidental* collision still
+# surfaces instead of hiding in expected noise.
+INTENTIONAL_BG_COLLISIONS = {
+    ("Geode", "terminal.ansi.black"),
+}
 
 
 def walk_colors(node, path, errors):
@@ -185,10 +200,39 @@ def check_terminal(name, style, warnings):
             continue
         if not HEX.match(val):
             continue
+        if (name, key) in INTENTIONAL_BG_COLLISIONS:
+            continue
         if composite(val, bg) == composite(bg, bg):
             warnings.append(
                 f"{name}: {key} ({val}) is identical to the terminal background "
                 f"{bg} — text in this color would be invisible"
+            )
+
+
+def check_terminal_ramp(name, style, warnings):
+    """Surface ANSI variants whose lightness runs the wrong way.
+
+    A swapped ``bright_*``/``dim_*`` (bright darker than its base, or dim lighter)
+    reads as a mistake, so each is reported as a non-fatal warning. The ``black``
+    slot is exempt from the dim rule: in a dark theme it doubles as the terminal
+    background, so its dim variant sitting marginally above the base is normal.
+    """
+    for base in ANSI_BASES:
+        b = style.get(f"terminal.ansi.{base}")
+        if not (b and HEX.match(b)):
+            continue
+        lb = _relative_luminance(b)
+        bright = style.get(f"terminal.ansi.bright_{base}")
+        if bright and HEX.match(bright) and _relative_luminance(bright) < lb:
+            warnings.append(
+                f"{name}: terminal.ansi.bright_{base} ({bright}) is darker than "
+                f"terminal.ansi.{base} ({b}) — the bright variant should be lighter"
+            )
+        dim = style.get(f"terminal.ansi.dim_{base}")
+        if base != "black" and dim and HEX.match(dim) and _relative_luminance(dim) > lb:
+            warnings.append(
+                f"{name}: terminal.ansi.dim_{base} ({dim}) is lighter than "
+                f"terminal.ansi.{base} ({b}) — the dim variant should be darker"
             )
 
 
@@ -228,6 +272,7 @@ def main() -> int:
         walk_colors(t["style"], f"{name}.style", errors)
         check_quality(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)
+        check_terminal_ramp(name, t["style"], warnings)
 
     if warnings:
         print(f"WARN: {len(warnings)} note(s) in {path}:", file=sys.stderr)
