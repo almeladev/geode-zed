@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Members & properties read more distinctly from functions.** The dark
+  periwinkle (`property`, `field`, `variable.member`) shifts from `#a9b6e6` to
+  `#a8afe6` — same lightness and saturation, hue nudged 227° → 233°. This doubles
+  its separation from sapphire functions (≈6° → ≈12°) and aligns it with the
+  light cut's hue (the two variants now share ~233°, as the palette intends).
+  Prominence is unchanged — still a calm blue-lavender — and it still clears WCAG
+  AA over the canvas (8.2:1), active line, selection and search.
+- **The dark active line is easier to spot.** `editor.active_line.background`
+  goes from 8% to 12% amethyst (`#bca0ee14` → `#bca0ee1f`), making the current
+  line a clearer cue at a glance. Every meaningful token still clears AA on the
+  active line (the lowest, `comment`, sits at 4.53:1).
+
 ## [1.0.0] - 2026-06-01
 
 ### Added

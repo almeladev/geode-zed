@@ -63,7 +63,7 @@
         "editor.background": "#1c1924ff",
         "editor.gutter.background": "#1c1924ff",
         "editor.subheader.background": "#211e2aff",
-        "editor.active_line.background": "#bca0ee14",
+        "editor.active_line.background": "#bca0ee1f",
         "editor.highlighted_line.background": "#ffffff0d",
         "editor.line_number": "#8b84a0ff",
         "editor.active_line_number": "#bca0eeff",
@@ -284,7 +284,7 @@
             "font_weight": null
           },
           "property": {
-            "color": "#a9b6e6ff",
+            "color": "#a8afe6ff",
             "font_style": null,
             "font_weight": null
           },
@@ -384,7 +384,7 @@
             "font_weight": null
           },
           "variable.member": {
-            "color": "#a9b6e6ff",
+            "color": "#a8afe6ff",
             "font_style": null,
             "font_weight": null
           },
@@ -409,7 +409,7 @@
             "font_weight": null
           },
           "field": {
-            "color": "#a9b6e6ff",
+            "color": "#a8afe6ff",
             "font_style": null,
             "font_weight": null
           },
