@@ -19,6 +19,7 @@
 ## Checklist
 
 - [ ] Previewed locally via `zed: install dev extension`
+- [ ] Ran `python3 .github/scripts/validate_theme.py themes/geode.json` (passes)
 - [ ] Meaningful tokens still meet WCAG AA contrast
 - [ ] Kept one color per meaning (ruby = errors only)
 - [ ] Updated `CHANGELOG.md` (and `version` in `extension.toml` if releasing)

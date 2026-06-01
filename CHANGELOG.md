@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- The theme validator now warns (non-fatal) when a `terminal.ansi.*` color
+  collapses to the terminal background and would render invisible — surfacing,
+  for example, that `Geode Light`'s `bright_white` equals its terminal canvas.
+- `check_version_sync.py` and a CI step that guard that the `version` in
+  `extension.toml` always has a matching section in `CHANGELOG.md`.
+- `CONTRIBUTING.md` and the PR template now document running the validators
+  locally before pushing.
+
+### Changed
+
+- The CI workflow pins Python (`actions/setup-python`) and now also runs when
+  `extension.toml` or `CHANGELOG.md` change.
+
+### Fixed
+
+- The theme validator no longer crashes with a `KeyError` on a malformed
+  variant (missing `editor.background`, `players`, search keys); it reports a
+  clear error and checks whatever surfaces do resolve.
+
 ## [0.1.0] - 2026-06-01
 
 ### Added

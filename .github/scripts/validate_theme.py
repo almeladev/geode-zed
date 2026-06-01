@@ -17,6 +17,13 @@ the accessibility/coherence promises Geode makes in its README:
     over search-match highlights;
   - the accents stay at least 40 degrees apart in hue.
 
+  Warnings (non-fatal)
+  - any terminal ANSI color that collapses to the terminal background (so text
+    in that color would be invisible) is reported but does not fail the build —
+    a dark theme's "black" sitting on its own background is conventional, while
+    a light theme's "bright_white" doing the same is a readability trade-off
+    worth surfacing.
+
 The predictive/ghost-text token is intentionally dim and is excluded from the
 contrast checks (it is not a "meaningful" token).
 
@@ -99,21 +106,35 @@ def _hue_gap(a, b):
 
 
 def check_quality(name, style, errors):
-    """Enforce the contrast and hue promises for one theme variant."""
-    bg = style["editor.background"]
-    active_line = composite(style["editor.active_line.background"], bg)
+    """Enforce the contrast and hue promises for one theme variant.
+
+    Missing keys are reported as clear errors rather than crashing; whatever
+    surfaces do resolve are still checked.
+    """
+    bg = style.get("editor.background")
+    if not bg:
+        errors.append(f"{name}: missing 'editor.background'; skipping contrast checks")
+        return
 
     # Backgrounds tokens may sit on, with the floor each must clear.
-    selection = composite(style["players"][0]["selection"], bg)
-    search = composite(style["search.match_background"], bg)
-    active_search = composite(style["search.active_match_background"], bg)
-    surfaces = [
-        ("editor background", bg, AA_NORMAL),
-        ("active line", active_line, AA_NORMAL),
-        ("selection", selection, AA_LARGE),
-        ("search match", search, AA_LARGE),
-        ("active search match", active_search, AA_LARGE),
-    ]
+    surfaces = [("editor background", bg, AA_NORMAL)]
+
+    def add_surface(label, key, floor):
+        val = style.get(key)
+        if val is None:
+            errors.append(f"{name}: missing {key!r}; cannot check contrast on {label}")
+            return
+        surfaces.append((label, composite(val, bg), floor))
+
+    add_surface("active line", "editor.active_line.background", AA_NORMAL)
+    add_surface("search match", "search.match_background", AA_LARGE)
+    add_surface("active search match", "search.active_match_background", AA_LARGE)
+
+    players = style.get("players") or []
+    if players and isinstance(players[0], dict) and players[0].get("selection"):
+        surfaces.append(("selection", composite(players[0]["selection"], bg), AA_LARGE))
+    else:
+        errors.append(f"{name}: missing players[0].selection; cannot check contrast on selection")
 
     for token, spec in style.get("syntax", {}).items():
         if token in DIM_TOKENS:
@@ -142,6 +163,31 @@ def check_quality(name, style, errors):
                 )
 
 
+def check_terminal(name, style, warnings):
+    """Surface ANSI colors that vanish into the terminal background.
+
+    This is a warning, not an error: a color equal to the terminal background
+    renders invisible, which is conventional for a dark theme's "black" but a
+    readability trade-off for a light theme's "bright_white". We report it so
+    it is a deliberate choice, and so an *accidental* collision can't hide.
+    """
+    bg = style.get("terminal.background")
+    if not bg:
+        return
+    for key, val in style.items():
+        if not (key.startswith("terminal.ansi.") and isinstance(val, str)):
+            continue
+        if key.endswith("background"):
+            continue
+        if not HEX.match(val):
+            continue
+        if composite(val, bg) == composite(bg, bg):
+            warnings.append(
+                f"{name}: {key} ({val}) is identical to the terminal background "
+                f"{bg} — text in this color would be invisible"
+            )
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print("usage: validate_theme.py <theme.json>", file=sys.stderr)
@@ -156,6 +202,7 @@ def main() -> int:
             return 1
 
     errors = []
+    warnings = []
 
     for key in ("name", "author", "themes"):
         if key not in data:
@@ -176,6 +223,12 @@ def main() -> int:
             continue
         walk_colors(t["style"], f"{name}.style", errors)
         check_quality(name, t["style"], errors)
+        check_terminal(name, t["style"], warnings)
+
+    if warnings:
+        print(f"WARN: {len(warnings)} note(s) in {path}:", file=sys.stderr)
+        for w in warnings:
+            print(f"  - {w}", file=sys.stderr)
 
     if errors:
         print(f"FAIL: {len(errors)} problem(s) in {path}:", file=sys.stderr)

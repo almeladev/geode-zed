@@ -13,6 +13,21 @@ so contributing is mostly about color and contrast.
 > Close `themes/geode.json` in Zed before editing it elsewhere — an open editor
 > buffer can overwrite external changes on save.
 
+## Validate before you push
+
+The same checks CI runs are plain Python with no dependencies, so run them
+locally before opening a pull request:
+
+```sh
+python3 .github/scripts/validate_theme.py themes/geode.json
+python3 .github/scripts/check_version_sync.py
+```
+
+The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
+accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
+on the terminal background). The second guards that any released `version` in
+`extension.toml` has a matching section in `CHANGELOG.md`.
+
 ## Design principles
 
 Please keep changes consistent with the ideas that make Geode coherent:
@@ -24,7 +39,9 @@ Please keep changes consistent with the ideas that make Geode coherent:
   literals.
 - **One color, one meaning.** Ruby is for errors and removed diff lines only.
 - **Keep the gems a family.** Accents share a tonal register and a minimum hue
-  separation of ~40°. Both variants share the same hues.
+  separation of ~40°. Both variants share the same hues. Note the amethyst↔sapphire
+  pair already sits right at that 40° floor, so retune hues carefully — the
+  validator will reject anything that closes the gap further.
 - **Respect contrast.** Every meaningful token must meet WCAG AA against its
   background in both the dark and light variants. The one exception is
   predictive (ghost) text: it is intentionally dim to read as a suggestion, so
