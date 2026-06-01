@@ -7,8 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing has been released yet. The first tagged release will move the entries
-below under a versioned heading.
+## [0.1.0] - 2026-06-01
 
 ### Added
 
@@ -30,4 +29,5 @@ below under a versioned heading.
 - Note in `CONTRIBUTING.md` documenting the two extra collaboration-cursor tints
   that sit outside the six-gem semantic palette.
 
-[Unreleased]: https://github.com/almeladev/geode-zed/commits/main
+[Unreleased]: https://github.com/almeladev/geode-zed/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
