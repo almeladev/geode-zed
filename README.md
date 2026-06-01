@@ -17,8 +17,6 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 Most dark themes color everything. Geode does the opposite: color goes only on the tokens worth finding — keywords, types, functions, strings and values. Variables and parameters stay neutral, and properties take periwinkle, so the shape of your data shows without competing with the gems. Light and dark share the same hues, so the two cuts feel like one theme.
 
-## Highlights
-
 - **Dark and light, one theme.** Both share the same palette — switch any time without relearning your colors.
 - **Easy on the eyes.** High contrast and color‑blind‑friendly in both, so code stays clear day or night.
 - **Color with meaning.** Only the parts worth finding get color, so your eye lands on the logic, not a rainbow.
