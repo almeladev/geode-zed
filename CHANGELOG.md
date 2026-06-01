@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Member & property highlighting in periwinkle.** `property`, `field` and
   `variable.member` move from neutral foreground to a calm blue-lavender —
-  `#a9b6e6` (dark) and `#444d99` (light) — that reads as the shape of the data.
+  `#a8afe6` (dark) and `#444d99` (light) — that reads as the shape of the data.
   Locals and parameters stay foreground, so member chains and object keys
   (`user.profile.name`, JSON/CSS keys) stand out as structure while staying
   distinct from sapphire functions and citrine types. Both tones clear WCAG AA
@@ -82,9 +82,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   clear error and checks whatever surfaces do resolve.
 - `check_version_sync.py` no longer leaks file handles (reads both files with a
   context manager).
-- The dark **periwinkle** in `assets/palette.svg` and `assets/preview.svg` now
-  shows `#a8afe6`, matching the theme — the swatch and preview had lagged behind
-  the member/property re-tune above.
 
 ### Removed
 
