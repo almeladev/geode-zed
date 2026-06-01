@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1276" height="680" viewBox="0 0 1276 680" font-family="ui-sans-serif,system-ui,sans-serif">
 <rect width="1276" height="680" rx="18" fill="#100d16"/>
-<text x="26" y="42" font-size="21" fill="#e1e9ef" font-weight="700">Geode v1.0.0 — propiedades con color + accesibilidad</text>
-<text x="26" y="68" font-size="13.5" fill="#8a83a0">Propiedades en periwinkle · números de línea y placeholder legibles · texto «white» de terminal visible en el corte claro</text>
+<text x="26" y="42" font-size="21" fill="#e1e9ef" font-weight="700">Geode v1.0.0 — colored properties + accessibility</text>
+<text x="26" y="68" font-size="13.5" fill="#8a83a0">Properties in periwinkle · legible line numbers and placeholders · terminal "white" visible in the light variant</text>
 <rect x="24" y="92" width="600" height="560" rx="12" fill="#1c1924" stroke="#363142"/>
 <clipPath id="clip24"><rect x="24" y="92" width="600" height="560" rx="12"/></clipPath>
 <g clip-path="url(#clip24)">

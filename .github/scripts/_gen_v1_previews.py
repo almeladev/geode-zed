@@ -159,10 +159,10 @@ def build():
         f'viewBox="0 0 {W} {H}" font-family="{SANS}">',
         f'<rect width="{W}" height="{H}" rx="18" fill="#100d16"/>',
         f'<text x="{pad+2}" y="42" font-size="21" fill="#e1e9ef" font-weight="700">'
-        f'Geode v1.0.0 — propiedades con color + accesibilidad</text>',
+        f'Geode v1.0.0 — colored properties + accessibility</text>',
         f'<text x="{pad+2}" y="68" font-size="13.5" fill="#8a83a0">'
-        f'Propiedades en periwinkle · números de línea y placeholder legibles · '
-        f'texto «white» de terminal visible en el corte claro</text>',
+        f'Properties in periwinkle · legible line numbers and placeholders · '
+        f'terminal "white" visible in the light variant</text>',
         window(pad, 92, win_w, win_h, PALETTES["dark"]),
         window(pad + win_w + gap, 92, win_w, win_h, PALETTES["light"]),
         '</svg>',
