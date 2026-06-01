@@ -12,9 +12,6 @@ must be a color the theme actually defines.
     (panel layers, mixed backgrounds) that are not literal theme tokens; those
     are allowlisted explicitly below.
 
-assets/preview-v1.svg is intentionally a frozen snapshot of the v1.0.0 palette
-(see CHANGELOG.md), so it is deliberately NOT validated here.
-
 No third-party dependencies.
 
 Run: python3 .github/scripts/check_asset_colors.py

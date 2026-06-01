@@ -30,8 +30,7 @@ accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
 on the terminal background). The second keeps the README artwork honest: every
 color in `assets/palette.svg` and `assets/preview.svg` must trace back to a
 color the theme defines, so a token you re-tune can't silently drift out of date
-in the swatches and preview (`assets/preview-v1.svg` is a frozen v1.0.0 snapshot
-and is deliberately excluded). The third guards that any released `version` in
+in the swatches and preview. The third guards that any released `version` in
 `extension.toml` has a matching section in `CHANGELOG.md`. The fourth checks that
 your commit subjects follow [Conventional Commits](https://www.conventionalcommits.org).
 

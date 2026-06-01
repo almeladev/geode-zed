@@ -21,8 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `editor.hover_line_number`, `hint` at AA; muted/placeholder icons at the 3:1
   graphical floor) and the eight base `terminal.ansi.*` colors against the
   terminal canvas. A regression now fails CI instead of slipping through.
-- A **Periwinkle** swatch in `assets/palette.svg`, and a full v1.0.0 preview
-  (both variants) at `assets/preview-v1.svg`.
+- A **Periwinkle** swatch in `assets/palette.svg`.
 - A **vendored** copy of Zed's theme JSON Schema at
   `.github/schemas/zed-theme-v0.2.0.json`. `check_schema.py` now validates
   against it by default, so the schema check is offline and deterministic
@@ -85,8 +84,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- The unused `.github/scripts/_gen_v1_previews.py` generator. `preview-v1.svg`
-  is a committed historical snapshot, so the one-off script was dead weight.
+- The unused `.github/scripts/_gen_v1_previews.py` generator, a one-off script
+  that was dead weight.
 
 ## [0.1.0] - 2026-06-01
 
@@ -112,7 +111,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A CI guard (`.github/scripts/check_asset_colors.py`) that keeps the README's
   artwork in sync with the theme: every color in `assets/palette.svg` and
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
-  `assets/preview-v1.svg` is excluded as a frozen v1.0.0 snapshot.
 
 
 [1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
