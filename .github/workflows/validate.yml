@@ -38,3 +38,8 @@ jobs:
 
       - name: Check version is documented in the changelog
         run: python3 .github/scripts/check_version_sync.py
+
+      - name: Validate against Zed's published theme schema (advisory)
+        run: |
+          python3 -m pip install --quiet jsonschema
+          python3 .github/scripts/check_schema.py themes/geode.json
