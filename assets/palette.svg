@@ -6,9 +6,9 @@
 <rect x="34" y="67" width="13" height="13" rx="3" fill="#bca0ee"/>
 <text x="58" y="78" font-size="14.5" fill="#bca0ee">Amethyst</text>
 <text x="430" y="78" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#bca0ee</text>
-<rect x="34" y="101" width="13" height="13" rx="3" fill="#86a2e4"/>
-<text x="58" y="112" font-size="14.5" fill="#86a2e4">Sapphire</text>
-<text x="430" y="112" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#86a2e4</text>
+<rect x="34" y="101" width="13" height="13" rx="3" fill="#86a3e4"/>
+<text x="58" y="112" font-size="14.5" fill="#86a3e4">Sapphire</text>
+<text x="430" y="112" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#86a3e4</text>
 <rect x="34" y="135" width="13" height="13" rx="3" fill="#e6cd7a"/>
 <text x="58" y="146" font-size="14.5" fill="#e6cd7a">Citrine</text>
 <text x="430" y="146" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#e6cd7a</text>
@@ -24,9 +24,9 @@
 <rect x="34" y="271" width="13" height="13" rx="3" fill="#e1e9ef"/>
 <text x="58" y="282" font-size="14.5" fill="#e1e9ef">Foreground</text>
 <text x="430" y="282" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#e1e9ef</text>
-<rect x="34" y="305" width="13" height="13" rx="3" fill="#8d889b"/>
-<text x="58" y="316" font-size="14.5" fill="#8d889b">Comment</text>
-<text x="430" y="316" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#8d889b</text>
+<rect x="34" y="305" width="13" height="13" rx="3" fill="#9690a4"/>
+<text x="58" y="316" font-size="14.5" fill="#9690a4">Comment</text>
+<text x="430" y="316" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#9690a4</text>
 <rect x="464" y="14" width="440" height="332" rx="12" fill="#f6f4fb" stroke="#d5d1e0"/>
 <text x="486" y="40" font-size="12" letter-spacing="1" fill="#696080">LIGHT</text>
 <text x="882" y="40" text-anchor="end" font-size="12.5" fill="#696080" font-family="ui-monospace,monospace">#f6f4fb</text>
@@ -52,7 +52,7 @@
 <rect x="486" y="271" width="13" height="13" rx="3" fill="#312a41"/>
 <text x="510" y="282" font-size="14.5" fill="#312a41">Foreground</text>
 <text x="882" y="282" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#312a41</text>
-<rect x="486" y="305" width="13" height="13" rx="3" fill="#6f6783"/>
-<text x="510" y="316" font-size="14.5" fill="#6f6783">Comment</text>
-<text x="882" y="316" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#6f6783</text>
+<rect x="486" y="305" width="13" height="13" rx="3" fill="#665d79"/>
+<text x="510" y="316" font-size="14.5" fill="#665d79">Comment</text>
+<text x="882" y="316" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#665d79</text>
 </svg>

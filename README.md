@@ -22,7 +22,7 @@ A few principles hold the palette together:
 - **Amethyst leads.** It's the signature accent and runs through the whole UI — selection, focus, the active line — so the editor feels of one piece.
 - **The gems are a set, not a scatter.** Every accent shares one tonal level and stays at least 40° apart in hue, in both variants.
 - **One color, one meaning.** Ruby is reserved for things that went wrong — errors and removed lines — so it never cries wolf on an ordinary number.
-- **Readable everywhere.** Every meaningful token clears WCAG AA contrast in both cuts, including on top of selections and search highlights.
+- **Readable everywhere.** Every meaningful token clears WCAG AA (4.5:1) against the canvas in both cuts — including on the active line — and stays above the AA‑large 3:1 floor under selections and search highlights.
 
 ## Palette
 
