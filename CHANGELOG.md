@@ -7,8 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-01
+
 ### Added
 
+- **Member & property highlighting in periwinkle.** `property`, `field` and
+  `variable.member` move from neutral foreground to a calm blue-lavender —
+  `#a9b6e6` (dark) and `#444d99` (light) — that reads as the shape of the data.
+  Locals and parameters stay foreground, so member chains and object keys
+  (`user.profile.name`, JSON/CSS keys) stand out as structure while staying
+  distinct from sapphire functions and citrine types. Both tones clear WCAG AA
+  (8.7:1 dark, 6.9:1 light) over the canvas, active line, selection and search.
+- The validator now enforces the contrast it used to ignore: UI chrome the user
+  reads (`text.muted`, `text.placeholder`, `editor.line_number`,
+  `editor.hover_line_number`, `hint` at AA; muted/placeholder icons at the 3:1
+  graphical floor) and the eight base `terminal.ansi.*` colors against the
+  terminal canvas. A regression now fails CI instead of slipping through.
+- A **Periwinkle** swatch in `assets/palette.svg`, and a full v1.0.0 preview
+  (both variants) at `assets/preview-v1.svg`.
 - A **vendored** copy of Zed's theme JSON Schema at
   `.github/schemas/zed-theme-v0.2.0.json`. `check_schema.py` now validates
   against it by default, so the schema check is offline and deterministic
@@ -37,6 +53,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The README now leads with installing Geode from the **Zed extension registry**
+  (it has been published) instead of the manual copy, and gains a "What the gems
+  mean" rundown mapping each accent — and the new periwinkle members — to the
+  syntax it carries.
 - The CI workflow pins Python (`actions/setup-python`) and now also runs when
   `extension.toml` or `CHANGELOG.md` change. It now declares least-privilege
   `permissions` and cancels superseded in-progress runs per ref.
@@ -49,6 +69,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Legibility of the UI chrome**, which the validator hadn't been checking.
+  `editor.line_number` (3.8:1 dark / 3.5:1 light) and `text.placeholder` (3.6 /
+  3.1) were below AA and `icon.placeholder` (2.9 / 2.7) below the 3:1 floor; all
+  now clear their thresholds in both variants.
+- **`Geode Light` terminal "white" was nearly invisible** at 1.88:1.
+  `terminal.ansi.white` is now a legible gray (`#4e495e`, 7.9:1) with
+  `bright_white`/`dim_white` retuned to keep the ramp ordered and readable.
 - The `preview.svg` collaboration-presence dots used a stale amber (`#d9a05a`)
   that no longer exists in the palette; they now use the actual warm player
   tints — `#efa880` in the dark window and `#bf6a25` in the light one.
@@ -80,5 +107,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Note in `CONTRIBUTING.md` documenting the two extra collaboration-cursor tints
   that sit outside the six-gem semantic palette.
 
-[Unreleased]: https://github.com/almeladev/geode-zed/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/almeladev/geode-zed/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
