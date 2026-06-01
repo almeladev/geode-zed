@@ -15,6 +15,10 @@ the accessibility/coherence promises Geode makes in its README:
     background AND against the composited active-line background;
   - meaningful tokens stay above the AA-large 3:1 floor over the selection and
     over search-match highlights;
+  - the UI chrome the user reads — muted/placeholder text, line numbers, muted
+    icons — clears its floor against the panel/editor surface (text AA 4.5:1,
+    icons the 3:1 of WCAG 1.4.11);
+  - the eight base ANSI terminal colors clear AA against the terminal canvas;
   - the accents stay at least 40 degrees apart in hue.
 
   Warnings (non-fatal)
@@ -48,6 +52,20 @@ MIN_HUE_SEPARATION = 40.0
 # Syntax tokens that are deliberately low-contrast (suggestion previews) and so
 # are excluded from the AA checks. Keep this list small and explicit.
 DIM_TOKENS = {"predictive"}
+
+# UI chrome that the user actually reads, with the background it sits on and the
+# floor it must clear. Text needs AA (4.5:1); icons are graphical objects and
+# need the 3:1 of WCAG 1.4.11. Deliberately dim tokens (disabled text/icons,
+# predictive ghost text) are intentionally excluded, like DIM_TOKENS above.
+UI_CONTRAST_CHECKS = (
+    ("text.muted", "surface.background", AA_NORMAL),
+    ("text.placeholder", "surface.background", AA_NORMAL),
+    ("hint", "editor.background", AA_NORMAL),
+    ("editor.line_number", "editor.background", AA_NORMAL),
+    ("editor.hover_line_number", "editor.background", AA_NORMAL),
+    ("icon.muted", "surface.background", AA_LARGE),
+    ("icon.placeholder", "surface.background", AA_LARGE),
+)
 
 # The eight ANSI color slots, each of which also has a bright_ and dim_ variant.
 ANSI_BASES = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
@@ -182,6 +200,52 @@ def check_quality(name, style, errors):
                 )
 
 
+def check_ui_contrast(name, style, errors):
+    """Enforce legible contrast for the UI chrome the validator used to ignore.
+
+    check_quality only covers syntax tokens over the editor; line numbers,
+    placeholders and muted icons sit on the panel/editor surfaces and are just as
+    important to read. Each is composited over its background and compared to the
+    floor in UI_CONTRAST_CHECKS.
+    """
+    for key, bg_key, floor in UI_CONTRAST_CHECKS:
+        fg = style.get(key)
+        bg = style.get(bg_key)
+        if not fg or not bg:
+            continue
+        ratio = contrast_ratio(composite(fg, bg), bg)
+        if ratio < floor:
+            errors.append(
+                f"{name}: {key} ({fg}) is {ratio:.2f}:1 on {bg_key} (needs >= {floor}:1)"
+            )
+
+
+def check_terminal_contrast(name, style, errors):
+    """Require the eight base ANSI colors to be legible on the terminal canvas.
+
+    A base ANSI color is ordinary program output, so it must clear AA against the
+    terminal background. The conventional dark-theme "black" == background case is
+    allowlisted in INTENTIONAL_BG_COLLISIONS; bright_/dim_ variants are governed by
+    check_terminal_ramp instead.
+    """
+    bg = style.get("terminal.background")
+    if not bg:
+        return
+    for base in ANSI_BASES:
+        key = f"terminal.ansi.{base}"
+        val = style.get(key)
+        if not (val and HEX.match(val)):
+            continue
+        if (name, key) in INTENTIONAL_BG_COLLISIONS:
+            continue
+        ratio = contrast_ratio(composite(val, bg), bg)
+        if ratio < AA_NORMAL:
+            errors.append(
+                f"{name}: {key} ({val}) is {ratio:.2f}:1 on the terminal "
+                f"background (needs >= {AA_NORMAL}:1)"
+            )
+
+
 def check_terminal(name, style, warnings):
     """Surface ANSI colors that vanish into the terminal background.
 
@@ -271,6 +335,8 @@ def main() -> int:
             continue
         walk_colors(t["style"], f"{name}.style", errors)
         check_quality(name, t["style"], errors)
+        check_ui_contrast(name, t["style"], errors)
+        check_terminal_contrast(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)
         check_terminal_ramp(name, t["style"], warnings)
 
@@ -286,7 +352,8 @@ def main() -> int:
         return 1
 
     print(f"OK: {path} valid — {len(themes)} variant(s), all colors well-formed,")
-    print("    AA contrast and >= 40 deg accent separation hold in every variant.")
+    print("    AA contrast (syntax, UI chrome and base terminal colors) and")
+    print("    >= 40 deg accent separation hold in every variant.")
     return 0
 
 
