@@ -4,11 +4,15 @@ on:
   push:
     paths:
       - "themes/**"
+      - "extension.toml"
+      - "CHANGELOG.md"
       - ".github/scripts/**"
       - ".github/workflows/validate.yml"
   pull_request:
     paths:
       - "themes/**"
+      - "extension.toml"
+      - "CHANGELOG.md"
       - ".github/scripts/**"
       - ".github/workflows/validate.yml"
 
@@ -18,5 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Validate themes/geode.json
         run: python3 .github/scripts/validate_theme.py themes/geode.json
+
+      - name: Check version is documented in the changelog
+        run: python3 .github/scripts/check_version_sync.py
