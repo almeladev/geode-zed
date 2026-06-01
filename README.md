@@ -19,12 +19,12 @@ Most dark themes color everything. Geode does the opposite: color goes only on t
 
 ## Highlights
 
-- **Two cuts, one stone.** Dark and light from a single palette — switch without relearning your colors.
-- **Accessible by design.** Every meaningful token meets WCAG AA in both variants, and diffs and diagnostics stay readable for color‑blind eyes.
-- **Color where it counts.** Keywords, types, functions, strings and values wear the gems; properties take periwinkle; variables and punctuation stay calm.
-- **Themed end to end.** Editor, syntax, the terminal's ANSI palette, git and diff, diagnostics and collaboration cursors — all from the same six gems.
-- **Tuned for real code.** Maps the scopes real languages emit — TypeScript, Python, Rust, Go, JSON, Markdown and more.
-- **Zero overhead.** A pure theme: one JSON file, no Rust, no build step.
+- **Dark and light, one theme.** Both share the same palette — switch any time without relearning your colors.
+- **Easy on the eyes.** High contrast and color‑blind‑friendly in both, so code stays clear day or night.
+- **Color with meaning.** Only the parts worth finding get color, so your eye lands on the logic, not a rainbow.
+- **Styled everywhere.** Editor, terminal, git changes and diagnostics all match — nothing left unstyled.
+- **Works with your stack.** Looks right in TypeScript, Python, Rust, Go, JSON, Markdown and more.
+- **Nothing to configure.** Install it, pick it, done.
 
 ## Palette
 
