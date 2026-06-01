@@ -3,5 +3,5 @@ name = "Geode"
 version = "1.0.0"
 schema_version = 1
 authors = ["Almela <almeladev@users.noreply.github.com>"]
-description = "A gem-toned theme for Zed. Color only where it carries meaning — dark and light, cut from the same stone."
+description = "💎 A gem-toned theme for Zed. Color only where it carries meaning — dark and light, cut from the same stone."
 repository = "https://github.com/almeladev/geode-zed"

@@ -2,7 +2,7 @@
 
 # Geode
 
-**A gem-toned theme for [Zed](https://zed.dev).**
+**💎 A gem-toned theme for [Zed](https://zed.dev).**
 Color only where it carries meaning — dark and light, cut from the same stone.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-196b66?style=flat-square)](LICENSE)
