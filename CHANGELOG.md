@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-01
+
 ### Added
 
 - **Member & property highlighting in periwinkle.** `property`, `field` and
@@ -101,5 +103,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Note in `CONTRIBUTING.md` documenting the two extra collaboration-cursor tints
   that sit outside the six-gem semantic palette.
 
-[Unreleased]: https://github.com/almeladev/geode-zed/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/almeladev/geode-zed/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
