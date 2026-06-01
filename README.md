@@ -23,7 +23,7 @@ A few principles hold the palette together:
 - **The gems are a set, not a scatter.** Every accent shares one tonal level and stays at least 40° apart in hue, in both variants.
 - **Structure has its own quiet color.** Locals stay foreground; members and properties take periwinkle — enough to trace object keys and member chains (`user.profile.name`), calm enough to keep the gems in front.
 - **One color, one meaning.** Ruby is reserved for things that went wrong — errors and removed lines — so it never cries wolf on an ordinary number.
-- **Readable everywhere — and checked.** Every meaningful token clears WCAG AA (4.5:1) against the canvas in both cuts, including on the active line, and stays above the AA‑large 3:1 floor under selections and search highlights. The UI chrome you read all day — line numbers, placeholders, muted icons — and the base terminal colors clear their floors too, and CI enforces all of it. Diffs and diagnostics never lean on color alone: Zed pairs them with gutter +/− markers and diagnostic icons, so red↔green stays legible for color‑blind readers.
+- **Accessible everywhere.** Every meaningful token clears WCAG AA (4.5:1) against the canvas in both cuts — and so does the chrome you read all day: line numbers, placeholders, muted icons and the terminal. Diffs and diagnostics never lean on red↔green alone, so they stay legible for color‑blind readers.
 
 ## Palette
 
