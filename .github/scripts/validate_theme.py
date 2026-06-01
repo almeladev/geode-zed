@@ -19,7 +19,9 @@ the accessibility/coherence promises Geode makes in its README:
     icons — clears its floor against the panel/editor surface (text AA 4.5:1,
     icons the 3:1 of WCAG 1.4.11);
   - the eight base ANSI terminal colors clear AA against the terminal canvas;
-  - the accents stay at least 40 degrees apart in hue.
+  - the accents stay at least 40 degrees apart in hue;
+  - members/properties (periwinkle) stay distinct from functions (sapphire),
+    which share their hue by design, by a minimum luminance contrast.
 
   Warnings (non-fatal)
   - any terminal ANSI color that collapses to the terminal background (so text
@@ -48,6 +50,13 @@ HEX = re.compile(r"^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$")
 AA_NORMAL = 4.5
 AA_LARGE = 3.0
 MIN_HUE_SEPARATION = 40.0
+
+# Members/properties (periwinkle) share a hue with functions (sapphire) by
+# design, so the 40-degree accent rule can't keep them apart. They must instead
+# separate by *weight*: a minimum luminance-contrast between the two, so a
+# `foo.bar()` chain never collapses into one flat blue. 1.30 rejects the old
+# near-isoluminant pairing (1.19) and clears the retuned one (~1.40) with margin.
+MIN_STRUCTURE_SEPARATION = 1.30
 
 # Syntax tokens that are deliberately low-contrast (suggestion previews) and so
 # are excluded from the AA checks. Keep this list small and explicit.
@@ -200,6 +209,29 @@ def check_quality(name, style, errors):
                 )
 
 
+def check_structure_separation(name, style, errors):
+    """Require members/properties to stay distinct from functions by weight.
+
+    Periwinkle (``variable.member``) deliberately shares sapphire's (``function``)
+    hue so member chains read as the same data family, which means the accent
+    hue-separation rule can't tell them apart. Their distinction must come from
+    luminance instead, so require a minimum contrast between the two — otherwise
+    ``foo.bar()`` collapses into one flat blue. Missing keys are skipped.
+    """
+    syntax = style.get("syntax", {})
+    member = syntax.get("variable.member", {}).get("color")
+    function = syntax.get("function", {}).get("color")
+    if not (member and function and HEX.match(member) and HEX.match(function)):
+        return
+    ratio = contrast_ratio(member, function)
+    if ratio < MIN_STRUCTURE_SEPARATION:
+        errors.append(
+            f"{name}: members ({member}) and functions ({function}) are only "
+            f"{ratio:.2f}:1 apart (needs >= {MIN_STRUCTURE_SEPARATION}:1) — they "
+            f"share a hue by design, so they must separate by weight"
+        )
+
+
 def check_ui_contrast(name, style, errors):
     """Enforce legible contrast for the UI chrome the validator used to ignore.
 
@@ -335,6 +367,7 @@ def main() -> int:
             continue
         walk_colors(t["style"], f"{name}.style", errors)
         check_quality(name, t["style"], errors)
+        check_structure_separation(name, t["style"], errors)
         check_ui_contrast(name, t["style"], errors)
         check_terminal_contrast(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)

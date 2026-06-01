@@ -60,13 +60,15 @@ Please keep changes consistent with the ideas that make Geode coherent:
   used across interactive UI (selection, focus, active line).
 - **Structure has its own color.** Variables and parameters use the foreground
   color; members and properties (`property`, `field`, `variable.member`) use
-  **periwinkle** (`#a8afe6` dark / `#444d99` light) — a calm blue-lavender that
+  **periwinkle** (`#b9bdf0` dark / `#3a4090` light) — a calm blue-lavender that
   reads as the shape of the data. It is not an accent (not in `accents`), so the
   40° rule doesn't apply, but it must clear AA and stay visibly distinct from
-  both sapphire functions and citrine types. Both cuts share the same hue (~233°),
-  roughly 12° off sapphire — keep that gap when retuning, or members and function
-  calls in a `foo.bar()` chain start to read alike. Reserve the gems for keywords,
-  types, functions, strings and literals.
+  both sapphire functions and citrine types. Both cuts share the same hue (~236°),
+  intentionally close to sapphire — so periwinkle separates from functions by
+  **weight, not hue**: the validator requires a minimum luminance contrast
+  (`MIN_STRUCTURE_SEPARATION`, ≥ 1.30:1) between members and functions, or a
+  `foo.bar()` chain starts to read as one flat blue. Keep that gap when retuning.
+  Reserve the gems for keywords, types, functions, strings and literals.
 - **One color, one meaning.** Ruby is for errors and removed diff lines only.
 - **Keep the gems a family.** Accents share a tonal register and a minimum hue
   separation of ~40°. Both variants share the same hues. Note the amethyst↔sapphire
