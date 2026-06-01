@@ -13,6 +13,10 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 <div align="center"><sub>Geode Light (back) · Geode (front)</sub></div>
 
+## Why Geode
+
+Most dark themes color everything. Geode does the opposite: color goes only on the tokens worth finding — keywords, types, functions, strings and values. Variables and parameters stay neutral, and properties take periwinkle, so the shape of your data shows without competing with the gems. Light and dark share the same hues, so the two cuts feel like one theme.
+
 ## Highlights
 
 - **Two cuts, one stone.** Dark and light from a single palette — switch without relearning your colors.
@@ -21,10 +25,6 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 - **Themed end to end.** Editor, syntax, the terminal's ANSI palette, git and diff, diagnostics and collaboration cursors — all from the same six gems.
 - **Tuned for real code.** Maps the scopes real languages emit — TypeScript, Python, Rust, Go, JSON, Markdown and more.
 - **Zero overhead.** A pure theme: one JSON file, no Rust, no build step.
-
-## Why Geode
-
-Most dark themes color everything. Geode does the opposite: color goes only on the tokens worth finding — keywords, types, functions, strings and values. Variables and parameters stay neutral, and properties take periwinkle, so the shape of your data shows without competing with the gems. Light and dark share the same hues, so the two cuts feel like one theme.
 
 ## Palette
 
