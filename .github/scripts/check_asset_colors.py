@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """Guard that the README's SVG assets stay in sync with the theme.
 
-`assets/palette.svg` and `assets/preview.svg` are hand-authored, so a color the
-theme changes (e.g. the periwinkle members) can silently drift out of date in
-the artwork the README shows. This keeps them honest: every hex an asset uses
-must be a color the theme actually defines.
+The README's artwork must never drift from the palette, so this keeps it honest:
+every hex an asset uses must be a color the theme actually defines.
 
-  - palette.svg is a pure swatch sheet of the theme's palette, so *every* hex
-    in it must exist in themes/geode.json — no allowlist.
-  - preview.svg is a mockup whose chrome uses a few composited/blended surfaces
-    (panel layers, mixed backgrounds) that are not literal theme tokens; those
-    are allowlisted explicitly below.
+  - palette.svg is a hand-authored swatch sheet of the theme's palette, so
+    *every* hex in it must exist in themes/geode.json.
+  - preview*.svg (the dark, light and combined mockups) are GENERATED from the
+    theme by build_preview.py and paint only theme colors — translucent
+    surfaces (active line, selections, focus rings) reuse the theme's own RGBA
+    tokens and let SVG composite them, so they introduce no foreign colors.
+
+No allowlist is needed today; each asset is still listed below so it is
+explicitly checked. (build_preview.py --print-allowlist confirms none drift in.)
 
 No third-party dependencies.
 
@@ -22,14 +24,15 @@ import sys
 THEME = "themes/geode.json"
 
 # Each asset maps to the set of hexes it may use that are NOT theme colors.
-# Keep allowlists minimal and documented — they are the only escape hatch.
+# The previews are generated straight from the theme (build_preview.py) and use
+# only theme colors, so every set is empty — the keys exist purely so each asset
+# is explicitly checked. If a deliberate composited color is ever introduced,
+# add it here with a comment; it is the only escape hatch.
 ALLOWLISTS = {
     "assets/palette.svg": set(),
-    "assets/preview.svg": {
-        # Composited mockup chrome (panel layers / blended surfaces), not tokens.
-        "#292434", "#2f3f36", "#3a334a", "#413a53",
-        "#ded5ee", "#ebe6f7", "#eee9f8",
-    },
+    "assets/preview.svg": set(),
+    "assets/preview-dark.svg": set(),
+    "assets/preview-light.svg": set(),
 }
 
 HEX = re.compile(r"#[0-9a-fA-F]{6,8}")

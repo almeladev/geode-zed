@@ -9,9 +9,27 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 </div>
 
-<img src="assets/preview.svg" width="100%" alt="Geode for Zed — light and dark windows" />
+<img src="assets/preview.svg" width="100%" alt="Geode for Zed — Geode Dark (left) and Geode Light (right)" />
 
-<div align="center"><sub>Geode Light (back) · Geode Dark (front)</sub></div>
+<div align="center"><sub>Geode Dark (left) · Geode Light (right)</sub></div>
+
+## Preview
+
+Expand a variant to see a full-size window:
+
+<details>
+<summary>🌙&nbsp;&nbsp;<b>Geode Dark</b></summary>
+
+<img src="assets/preview-dark.svg" width="100%" alt="Geode Dark — a full Zed editor window" />
+
+</details>
+
+<details>
+<summary>☀️&nbsp;&nbsp;<b>Geode Light</b></summary>
+
+<img src="assets/preview-light.svg" width="100%" alt="Geode Light — a full Zed editor window" />
+
+</details>
 
 ## Why Geode
 

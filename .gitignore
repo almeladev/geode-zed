@@ -16,3 +16,6 @@ __pycache__/
 
 # Logs
 *.log
+
+# Samples (local theme preview — not part of the published theme)
+samples/
