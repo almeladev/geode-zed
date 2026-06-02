@@ -5,6 +5,30 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-06-02
+
+### Changed
+
+- **Parameters get their own recessive tint.** `variable.parameter` and
+  `parameter` used to share the foreground color, so a function's inputs were
+  indistinguishable from any ordinary variable. They now take a calm
+  lavender-gray — `#a9a2bd` (dark) and `#5b5470` (light) — a touch quieter than
+  plain text and clearly apart from the periwinkle of members. The three read as
+  a gentle hierarchy in both cuts (foreground → member → parameter, each step
+  receding a little further toward the canvas) without spending a gem on them.
+  Both tones clear WCAG AA over canvas and active line (≥ 5.7:1), sit ΔL\* ~19–24
+  from the foreground and ~10–11 from members, and keep the same ~261° hue across
+  cuts. Variables themselves stay neutral.
+- **Regular expressions take an amber of their own.** `string.regex` shared the
+  aquamarine of `number`/`boolean`/`constant`, so a regex and a nearby number
+  looked identical even though a pattern is a language within the language. It
+  now uses the warm amber that already lived in the palette as a collaboration
+  cursor — `#efa880` (dark) and, darkened to clear AA on the pale canvas,
+  `#9c5018` (light): the one warm tone, sitting ~150° off aquamarine and well
+  clear of citrine types. `string.escape` and `string.special` stay aquamarine —
+  only the regex itself peels away. `palette.svg` is updated to show both new
+  tones.
+
 ## [1.0.2] - 2026-06-02
 
 ### Changed
