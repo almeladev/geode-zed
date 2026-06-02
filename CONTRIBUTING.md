@@ -28,9 +28,9 @@ python3 .github/scripts/check_conventional_commits.py   # checks origin/main..HE
 The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
 accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
 on the terminal background). The second keeps the README artwork honest: every
-color in `assets/palette.svg` and `assets/preview.svg` must trace back to a
-color the theme defines, so a token you re-tune can't silently drift out of date
-in the swatches and preview. The third guards that any released `version` in
+color in the SVG assets must trace back to a color the theme defines, so a token
+you re-tune can't silently drift out of date in the swatches or previews. The
+third guards that any released `version` in
 `extension.toml` has a matching section in `CHANGELOG.md`. The fourth checks that
 your commit subjects follow [Conventional Commits](https://www.conventionalcommits.org).
 
@@ -51,6 +51,23 @@ otherwise rejects automated fetches):
 curl -fsSL https://zed.dev/schema/themes/v0.2.0.json \
   -o .github/schemas/zed-theme-v0.2.0.json
 ```
+
+## Preview assets
+
+The README previews — `assets/preview-dark.svg`, `assets/preview-light.svg` and
+the combined `assets/preview.svg` — are **generated** from the theme, not drawn
+by hand, so they can't drift from the palette. Regenerate them after any change
+that affects the colors they show:
+
+```sh
+python3 .github/scripts/build_preview.py
+```
+
+It reads `themes/geode.json` and rewrites all three SVGs using only theme colors
+(translucent surfaces reuse the theme's own RGBA tokens), so `check_asset_colors.py`
+keeps passing with no allowlist. `assets/palette.svg` is still hand-authored. To
+eyeball a result, render it to PNG — e.g.
+`rsvg-convert -z 2 assets/preview-dark.svg -o /tmp/preview.png`.
 
 ## Design principles
 
