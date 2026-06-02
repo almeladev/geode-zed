@@ -27,7 +27,7 @@ A few principles hold the palette together:
 
 ## Palette
 
-<img src="assets/palette.svg" width="100%" alt="Geode palette — six gems, periwinkle and neutrals, in dark and light" />
+<img src="assets/palette.svg" width="100%" alt="Geode palette — six gems, periwinkle, amber and neutrals, in dark and light" />
 
 The light cut keeps the same hues as the dark one and only darkens each gem as far as a pale background needs — yellows and teals deepen into bronze and forest rather than washing out.
 
