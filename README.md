@@ -33,21 +33,21 @@ Expand a variant to see a full-size window:
 
 ## Why Geode
 
-Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet-tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
+Most themes color everything. Geode does the opposite: the canvas is a quiet, violet-tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
 
 A few principles hold the palette together:
 
 - **Amethyst leads.** It's the signature accent and runs through the whole UI — selection, focus, the active line — so the editor feels of one piece.
-- **The gems are a set, not a scatter.** Every accent carries the same weight and stays clearly apart from the others, so the palette reads as one family across both light and dark.
+- **The gems are a set, not a scatter.** Every accent carries the same weight and stays clearly apart from the others, so the palette reads as one family.
 - **Structure shows its shape.** Members and properties take a calm periwinkle — not a gem — so object keys and member chains read as data structure without competing with the accents.
 - **One color, one meaning.** Ruby is reserved for things that went wrong — errors and removed lines — so it never cries wolf on an ordinary number.
-- **Readable everywhere.** Whatever carries color stays easy to read — on the canvas, the current line, under selections and search — light or dark.
+- **Readable everywhere.** Whatever carries color stays easy to read — on the canvas, the current line, under selections and search.
 
 ## Palette
 
 <img src="assets/palette.svg" width="100%" alt="Geode palette — six gems, periwinkle, amber and neutrals, in dark and light" />
 
-The light cut keeps the same hues as the dark one and only darkens each gem as far as a pale background needs — yellows and teals deepen into bronze and forest rather than washing out.
+Both cuts share the same hues, each tuned only as far as its canvas needs — on the pale light background, yellows and teals deepen into bronze and forest rather than washing out.
 
 **What the gems mean** — color is spent on roles, not decoration:
 
@@ -64,7 +64,7 @@ Variables stay neutral and parameters take a quieter recessive tone of their own
 
 Geode is made to stay readable for everyone, and every change is checked automatically rather than judged by eye:
 
-- **Comfortable to read, light or dark.** Text keeps its contrast against the background everywhere it matters — including the current line, selections and search highlights — so nothing washes out as you work.
+- **Comfortable to read.** Text keeps its contrast against the background everywhere it matters — including the current line, selections and search highlights — so nothing washes out as you work.
 - **Friendly to color-blind readers.** Nothing important rides on telling red from green: diffs, errors and warnings stay clear through icons, gutter marks and soft background tints, not color alone — and the palette is tested against the common kinds of color blindness.
 
 ## Install
