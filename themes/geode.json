@@ -284,7 +284,7 @@
             "font_weight": null
           },
           "property": {
-            "color": "#b9bdf0ff",
+            "color": "#c0c2e8ff",
             "font_style": null,
             "font_weight": null
           },
@@ -384,7 +384,7 @@
             "font_weight": null
           },
           "variable.member": {
-            "color": "#b9bdf0ff",
+            "color": "#c0c2e8ff",
             "font_style": null,
             "font_weight": null
           },
@@ -409,7 +409,7 @@
             "font_weight": null
           },
           "field": {
-            "color": "#b9bdf0ff",
+            "color": "#c0c2e8ff",
             "font_style": null,
             "font_weight": null
           },
@@ -744,7 +744,7 @@
             "font_weight": null
           },
           "property": {
-            "color": "#3a4090ff",
+            "color": "#343a82ff",
             "font_style": null,
             "font_weight": null
           },
@@ -844,7 +844,7 @@
             "font_weight": null
           },
           "variable.member": {
-            "color": "#3a4090ff",
+            "color": "#343a82ff",
             "font_style": null,
             "font_weight": null
           },
@@ -869,7 +869,7 @@
             "font_weight": null
           },
           "field": {
-            "color": "#3a4090ff",
+            "color": "#343a82ff",
             "font_style": null,
             "font_weight": null
           },
