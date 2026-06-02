@@ -9,18 +9,9 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 </div>
 
-<img src="assets/preview.svg" width="100%" alt="Geode for Zed — Geode Dark and Geode Light shown side by side" />
+<img src="assets/preview.svg" width="100%" alt="Geode for Zed — Geode Dark (left) and Geode Light (right)" />
 
-<table align="center" width="100%">
-  <tr>
-    <td width="50%"><img src="assets/preview-dark.svg" width="100%" alt="Geode Dark — a full editor window" /></td>
-    <td width="50%"><img src="assets/preview-light.svg" width="100%" alt="Geode Light — a full editor window" /></td>
-  </tr>
-  <tr>
-    <td align="center"><sub><b>Geode Dark</b></sub></td>
-    <td align="center"><sub><b>Geode Light</b></sub></td>
-  </tr>
-</table>
+<div align="center"><sub>Geode Dark (left) · Geode Light (right)</sub></div>
 
 ## Why Geode
 

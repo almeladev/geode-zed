@@ -50,12 +50,14 @@ LINE_H = 22
 CONTENT_TOP = TITLE_H
 CONTENT_BOT = H - STATUS_H
 EDITOR_X = PANEL_W
-EDITOR_W = W - PANEL_W
+AGENT_W = 256                # right-hand agent (AI) panel — Zed's signature dock
+EDITOR_RIGHT = W - AGENT_W
+EDITOR_W = EDITOR_RIGHT - EDITOR_X
 CODE_TOP = TITLE_H + TAB_H + CRUMB_H
 GUTTER_NUM_X = EDITOR_X + GUTTER_W - 11      # right edge for right-aligned numbers
 CODE_X = EDITOR_X + GUTTER_W + 12
-MINIMAP_X = W - MINIMAP_W - 12
-CODE_RIGHT = MINIMAP_X - 18
+MINIMAP_X = EDITOR_RIGHT - MINIMAP_W - 10
+CODE_RIGHT = MINIMAP_X - 16
 
 FONT = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
@@ -197,6 +199,29 @@ def tri(cx, cy, raw, down=False):
     return f'<path d="{d}" {fill(raw)}/>'
 
 
+def star(cx, cy, raw, r=5.5):
+    """A 4-point sparkle — Zed's agent/AI glyph."""
+    o = r * 0.30
+    d = (f"M{cx:.1f} {cy-r:.1f} L{cx+o:.1f} {cy-o:.1f} L{cx+r:.1f} {cy:.1f} "
+         f"L{cx+o:.1f} {cy+o:.1f} L{cx:.1f} {cy+r:.1f} L{cx-o:.1f} {cy+o:.1f} "
+         f"L{cx-r:.1f} {cy:.1f} L{cx-o:.1f} {cy-o:.1f} Z")
+    return f'<path d="{d}" {fill(raw)}/>'
+
+
+def plus(cx, cy, raw, r=4.5):
+    return (line(cx - r, cy, cx + r, cy, raw, 1.4)
+            + line(cx, cy - r, cx, cy + r, raw, 1.4))
+
+
+def send_glyph(cx, cy, raw):
+    """A small upward 'send' arrow, drawn in the button's contrast color."""
+    d = (f"M{cx:.1f} {cy+4:.1f} L{cx:.1f} {cy-4:.1f} "
+         f"M{cx:.1f} {cy-4:.1f} L{cx-3:.1f} {cy-1:.1f} "
+         f"M{cx:.1f} {cy-4:.1f} L{cx+3:.1f} {cy-1:.1f}")
+    return (f'<path d="{d}" fill="none" {stroke(raw, 1.5)} '
+            f'stroke-linecap="round" stroke-linejoin="round"/>')
+
+
 # ───────────────────────────── window content ────────────────────────────
 def window_content(style):
     """All interior elements of one window, drawn in local [0,0]→[W,H]."""
@@ -218,6 +243,7 @@ def window_content(style):
     indent_guide = c(style, "editor.indent_guide")
     selection = style["players"][0]["selection"]
     elem_sel = c(style, "element.selected")
+    elem_active = c(style, "element.active")
     elevated = c(style, "elevated_surface.background")
     focus = c(style, "border.focused")
     err = c(style, "error")
@@ -269,7 +295,7 @@ def window_content(style):
 
     # ── Tab bar (over the editor only) ──
     s.append(rect(EDITOR_X, TITLE_H, EDITOR_W, TAB_H, f=tabbar_bg))
-    s.append(line(EDITOR_X, TITLE_H + TAB_H, W, TITLE_H + TAB_H, border))
+    s.append(line(EDITOR_X, TITLE_H + TAB_H, EDITOR_RIGHT, TITLE_H + TAB_H, border))
     tx = EDITOR_X
     for nw, active, modified in TABS:
         tw = nw + 56
@@ -295,7 +321,7 @@ def window_content(style):
         if w != 64:
             s.append(tri(bx - 9, crumb_y, icon_muted))
     for i in range(3):  # toolbar controls on the right
-        s.append(rect(W - 26 - i * 18, crumb_y - 5, 10, 10, r=2, s=icon_muted))
+        s.append(rect(EDITOR_RIGHT - 26 - i * 18, crumb_y - 5, 10, 10, r=2, s=icon_muted))
 
     # ── Editor: active line, gutter numbers, code, selection, cursor ──
     cursor_x = cursor_y = None
@@ -344,9 +370,73 @@ def window_content(style):
     s.append(rect(MINIMAP_X + 2, mm_top + (ACTIVE - 5) * 7, MINIMAP_W - 4, 13 * 7,
                   r=3, f=accent_solid, extra='fill-opacity="0.10"'))
 
+    # ── Right agent (AI) panel — Zed's signature dock ──
+    ax = EDITOR_RIGHT
+    s.append(rect(ax, CONTENT_TOP, AGENT_W, CONTENT_BOT - CONTENT_TOP, f=panel_bg))
+    s.append(line(ax, CONTENT_TOP, ax, CONTENT_BOT, border))
+    head_mid = CONTENT_TOP + TAB_H / 2
+    s.append(star(ax + 20, head_mid, accent))                       # agent glyph
+    s.append(bar(ax + 32, head_mid - 3, 58, text))                  # "Agent" title
+    s.append(line(ax, CONTENT_TOP + TAB_H, W, CONTENT_TOP + TAB_H, border))
+    s.append(circle(W - 44, head_mid, 2.2, icon_muted))
+    s.append(plus(W - 22, head_mid, icon_muted))                    # new thread
+
+    ay = CONTENT_TOP + TAB_H + 22
+    # assistant intro
+    s.append(star(ax + 20, ay + 3, accent))
+    s.append(bar(ax + 34, ay, 150, text))
+    s.append(bar(ax + 34, ay + 13, 104, muted))
+    ay += 38
+    # a code block the agent proposes
+    card_h = 88
+    s.append(rect(ax + 16, ay, AGENT_W - 32, card_h, r=8, f=bg, s=border))
+    inner = [[("kw", 26), ("fn", 50)],
+             [("pr", 30), ("op", 6), ("st", 54)],
+             [("va", 40), ("op", 6), ("nu", 24)],
+             [("kw", 34), ("va", 44)]]
+    iy = ay + 16
+    for toks in inner:
+        ix = ax + 30
+        for role, w in toks:
+            s.append(bar(ix, iy, w, syn(style, role)))
+            ix += w + 7
+        iy += 17
+    ay += card_h + 20
+    # tool-call status pill
+    s.append(rect(ax + 16, ay, 158, 20, r=6, s=border))
+    s.append(circle(ax + 28, ay + 10, 3, ok))
+    s.append(bar(ax + 38, ay + 7, 104, muted))
+    ay += 40
+    # user message bubble
+    bub_h = 50
+    s.append(rect(ax + 16, ay, AGENT_W - 32, bub_h, r=8, f=elem_active))
+    s.append(bar(ax + 28, ay + 15, 172, text))
+    s.append(bar(ax + 28, ay + 31, 116, muted))
+    ay += bub_h + 20
+    # assistant reply
+    s.append(star(ax + 20, ay + 3, accent))
+    s.append(bar(ax + 34, ay, 154, text))
+    s.append(bar(ax + 34, ay + 13, 134, muted))
+    s.append(bar(ax + 34, ay + 26, 90, muted))
+
+    # composer (Zed pins the input to the bottom of the panel)
+    comp_h = 74
+    comp_y = CONTENT_BOT - 16 - comp_h
+    s.append(rect(ax + 14, comp_y, AGENT_W - 28, comp_h, r=10, f=bg, s=focus))
+    s.append(bar(ax + 26, comp_y + 17, 132, muted))
+    s.append(bar(ax + 26, comp_y + 30, 80, muted))
+    crow = comp_y + comp_h - 18
+    s.append(plus(ax + 27, crow, icon_muted))                       # attach
+    s.append(rect(ax + 42, crow - 8, 64, 16, r=8, s=border))        # model selector
+    s.append(bar(ax + 50, crow - 2.5, 32, muted, h=5))
+    s.append(tri(ax + 99, crow, icon_muted, down=True))
+    sx = ax + AGENT_W - 30
+    s.append(circle(sx, crow, 10, accent_solid))                    # send button
+    s.append(send_glyph(sx, crow, bg))
+
     # ── Completions popup (the one signature element, anchored at the cursor) ──
     if cursor_x is not None:
-        pw, ph = 286, 138
+        pw, ph = 250, 132
         px = min(max(cursor_x - 16, CODE_X), CODE_RIGHT - pw)
         py = cursor_y + 16
         s.append(rect(px, py, pw, ph, r=9, f=elevated, s=focus,
@@ -433,12 +523,13 @@ def render_combined(dark, light):
     m = 60                  # margin: room for the tilt excursion + shadows
     cw = W * 2 - overlap + m * 2
     ch = H + m * 2 + 32
-    lx, dx = m, W - overlap + m
-    ly, dy = m + 28, m
-    left = window(light, "w1", f"translate({lx},{ly}) rotate({-tilt},{W/2},{H/2})")
-    right = window(dark, "w2", f"translate({dx},{dy}) rotate({tilt},{W/2},{H/2})")
-    # light behind, dark in front (dark drawn last → on top at the seam)
-    return doc(cw, ch, left + right)
+    # Dark always on the left; light on the right.
+    lx, ly = m, m + 28
+    rx, ry = W - overlap + m, m
+    left = window(dark, "w1", f"translate({lx},{ly}) rotate({-tilt},{W/2},{H/2})")
+    right = window(light, "w2", f"translate({rx},{ry}) rotate({tilt},{W/2},{H/2})")
+    # light (right) behind, dark (left) in front → dark drawn last, on top at the seam
+    return doc(cw, ch, right + left)
 
 
 # ───────────────────────────────── cli ───────────────────────────────────
