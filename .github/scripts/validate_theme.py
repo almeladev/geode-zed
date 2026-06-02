@@ -21,7 +21,8 @@ the accessibility/coherence promises Geode makes in its README:
   - the eight base ANSI terminal colors clear AA against the terminal canvas;
   - the accents stay at least 40 degrees apart in hue;
   - members/properties (periwinkle) stay distinct from functions (sapphire),
-    which share their hue by design, by a minimum luminance contrast.
+    which share their hue by design, by a perceptual CIELAB lightness gap that
+    also survives a simulated red-green color-vision deficiency.
 
   Warnings (non-fatal)
   - any terminal ANSI color that collapses to the terminal background (so text
@@ -51,12 +52,32 @@ AA_NORMAL = 4.5
 AA_LARGE = 3.0
 MIN_HUE_SEPARATION = 40.0
 
-# Members/properties (periwinkle) share a hue with functions (sapphire) by
-# design, so the 40-degree accent rule can't keep them apart. They must instead
-# separate by *weight*: a minimum luminance-contrast between the two, so a
-# `foo.bar()` chain never collapses into one flat blue. 1.30 rejects the old
-# near-isoluminant pairing (1.19) and clears the retuned one (~1.40) with margin.
-MIN_STRUCTURE_SEPARATION = 1.30
+# Members/properties (periwinkle) share a hue family with functions (sapphire)
+# by design, so the 40-degree accent rule can't keep them apart. They separate by
+# *lightness* instead — but a raw WCAG luminance ratio is a poor, easily-gamed
+# proxy (it once sat at 1.30, fixed just under the 1.39 the palette happened to
+# hit). We require a perceptual CIELAB lightness gap (ΔL*) with real margin, AND
+# that the gap survives a simulated red-green color-vision deficiency — two blues
+# that separate only by lightness are exactly where a dichromat is most at risk.
+# The palette targets ΔL* ~12+ on both axes; the floors sit well below that so
+# they catch a regression (the old near-isoluminant pairing was ΔL* < 4) without
+# being reverse-engineered from the current value.
+MIN_STRUCTURE_DELTA_L = 10.0       # ΔL* in CIELAB, normal vision
+MIN_STRUCTURE_DELTA_L_CVD = 8.0    # ΔL* after simulating deuteranopia / protanopia
+
+# Viénot 1999 dichromat simulation matrices, applied to *linear* sRGB.
+CVD_MATRICES = {
+    "deuteranopia": (
+        (0.367, 0.861, -0.228),
+        (0.280, 0.673, 0.047),
+        (-0.012, 0.043, 0.969),
+    ),
+    "protanopia": (
+        (0.152, 1.053, -0.205),
+        (0.115, 0.786, 0.099),
+        (-0.004, -0.048, 1.052),
+    ),
+}
 
 # Syntax tokens that are deliberately low-contrast (suggestion previews) and so
 # are excluded from the AA checks. Keep this list small and explicit.
@@ -137,6 +158,33 @@ def composite(fg, bg):
     return "#%02x%02x%02x" % out
 
 
+def _lab_lightness(hex_color):
+    """CIELAB L* (perceptual lightness, 0-100) of an opaque sRGB color (D65)."""
+    def lin(c):
+        c /= 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    r, g, b, _ = _channels(hex_color)
+    y = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+    return 116 * y ** (1 / 3) - 16 if y > 0.008856 else 903.3 * y
+
+
+def _simulate_cvd(hex_color, matrix):
+    """Project an sRGB color through a dichromat matrix (in linear sRGB) -> #RRGGBB."""
+    def to_lin(c):
+        c /= 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    def to_srgb(c):
+        c = max(0.0, min(1.0, c))
+        return c * 12.92 if c <= 0.0031308 else 1.055 * c ** (1 / 2.4) - 0.055
+
+    r, g, b, _ = _channels(hex_color)
+    lr, lg, lb = to_lin(r), to_lin(g), to_lin(b)
+    out = (to_srgb(row[0] * lr + row[1] * lg + row[2] * lb) for row in matrix)
+    return "#%02x%02x%02x" % tuple(round(c * 255) for c in out)
+
+
 def hue_degrees(hex_color):
     r, g, b, _ = _channels(hex_color)
     return colorsys.rgb_to_hls(r / 255, g / 255, b / 255)[0] * 360
@@ -210,26 +258,40 @@ def check_quality(name, style, errors):
 
 
 def check_structure_separation(name, style, errors):
-    """Require members/properties to stay distinct from functions by weight.
+    """Require members/properties to stay distinct from functions by lightness.
 
     Periwinkle (``variable.member``) deliberately shares sapphire's (``function``)
     hue so member chains read as the same data family, which means the accent
     hue-separation rule can't tell them apart. Their distinction must come from
-    luminance instead, so require a minimum contrast between the two — otherwise
-    ``foo.bar()`` collapses into one flat blue. Missing keys are skipped.
+    lightness instead — but measured perceptually (CIELAB ΔL*), not as a raw WCAG
+    luminance ratio, and the gap must also survive a simulated red-green
+    color-vision deficiency, where two blues are most at risk of collapsing into
+    one flat blue. Missing keys are skipped.
     """
     syntax = style.get("syntax", {})
     member = syntax.get("variable.member", {}).get("color")
     function = syntax.get("function", {}).get("color")
     if not (member and function and HEX.match(member) and HEX.match(function)):
         return
-    ratio = contrast_ratio(member, function)
-    if ratio < MIN_STRUCTURE_SEPARATION:
+
+    delta_l = abs(_lab_lightness(member) - _lab_lightness(function))
+    if delta_l < MIN_STRUCTURE_DELTA_L:
         errors.append(
             f"{name}: members ({member}) and functions ({function}) are only "
-            f"{ratio:.2f}:1 apart (needs >= {MIN_STRUCTURE_SEPARATION}:1) — they "
-            f"share a hue by design, so they must separate by weight"
+            f"ΔL*={delta_l:.1f} apart (needs >= {MIN_STRUCTURE_DELTA_L}) — they "
+            f"share a hue by design, so they must separate by lightness"
         )
+
+    for kind, matrix in CVD_MATRICES.items():
+        dm, df = _simulate_cvd(member, matrix), _simulate_cvd(function, matrix)
+        cvd_delta = abs(_lab_lightness(dm) - _lab_lightness(df))
+        if cvd_delta < MIN_STRUCTURE_DELTA_L_CVD:
+            errors.append(
+                f"{name}: members ({member}) and functions ({function}) collapse to "
+                f"ΔL*={cvd_delta:.1f} under simulated {kind} (needs >= "
+                f"{MIN_STRUCTURE_DELTA_L_CVD}) — the two blues must stay legibly "
+                f"distinct under red-green color-vision deficiency"
+            )
 
 
 def check_ui_contrast(name, style, errors):

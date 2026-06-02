@@ -5,6 +5,37 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-06-02
+
+### Changed
+
+- **Periwinkle members separate from sapphire functions more, and more
+  robustly.** 1.0.1 lifted the member↔function gap to a 1.40:1 luminance ratio,
+  but that ratio is a weak proxy: perceptually the two blues sat only ~10 ΔL\*
+  apart (dark) and ~9.5 (light), and under simulated red-green color-vision
+  deficiency the light cut dropped to ~8.9 — close enough that a `foo.bar()`
+  chain still read as fairly flat. Periwinkle (`property`, `field`,
+  `variable.member`) is retuned to `#c0c2e8` (dark) and `#343a82` (light): the
+  same calm lavender hue (~236°), but a lighter, lower-chroma dark cut and a
+  deeper light cut. That widens the perceptual gap to ΔL\* ~12.2 / ~12.6 and adds
+  a second, hue-independent separation axis — members are now a notably *calmer*
+  blue than vivid sapphire functions, reinforcing "a calm periwinkle, not a gem."
+  Both tones still clear WCAG AA over canvas, active line, selection and search
+  (≥ 9.3:1), and stay ~24–26° clear of amethyst keywords. `palette.svg` and
+  `preview.svg` are updated to match.
+
+### Added
+
+- The member/function guard is now **perceptual and color-vision-deficiency
+  aware.** `check_structure_separation` no longer trusts a raw WCAG luminance
+  ratio (which once sat at `1.30`, fixed just under the value the palette
+  happened to hit). It now requires a CIELAB lightness gap (`MIN_STRUCTURE_DELTA_L`,
+  ΔL\* ≥ 10) that must also survive a simulated **deuteranopia and protanopia**
+  (Viénot 1999, in pure Python — `MIN_STRUCTURE_DELTA_L_CVD`, ΔL\* ≥ 8). The
+  floors sit well below the palette's ~12 ΔL\* so they catch a regression — the
+  old near-isoluminant pairing scored ΔL\* < 6 and now fails CI — without being
+  reverse-engineered from the current colors.
+
 ## [1.0.1] - 2026-06-02
 
 ### Changed
@@ -137,6 +168,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[1.0.2]: https://github.com/almeladev/geode-zed/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/almeladev/geode-zed/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
