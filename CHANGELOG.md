@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2026-06-02
+
+### Changed
+
+- **The README "Accessibility" section is rewritten in plain, user-facing
+  language.** It now says what a reader gets — comfortable contrast in both the light
+  and dark cuts, and a palette that never leans on red-versus-green alone — instead of
+  the contrast ratios, CIELAB ΔE and color-vision-deficiency simulation, which stay
+  documented in `CONTRIBUTING.md`.
+
 ## [1.1.2] - 2026-06-02
 
 ### Changed
@@ -239,6 +249,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[1.1.3]: https://github.com/almeladev/geode-zed/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/almeladev/geode-zed/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/almeladev/geode-zed/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/almeladev/geode-zed/compare/1.0.2...1.1.0
