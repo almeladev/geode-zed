@@ -13,6 +13,24 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 <div align="center"><sub>Geode Dark (left) · Geode Light (right)</sub></div>
 
+## Preview
+
+Expand a variant to see a full-size window:
+
+<details>
+<summary>🌙&nbsp;&nbsp;<b>Geode Dark</b></summary>
+
+<img src="assets/preview-dark.svg" width="100%" alt="Geode Dark — a full Zed editor window" />
+
+</details>
+
+<details>
+<summary>☀️&nbsp;&nbsp;<b>Geode Light</b></summary>
+
+<img src="assets/preview-light.svg" width="100%" alt="Geode Light — a full Zed editor window" />
+
+</details>
+
 ## Why Geode
 
 Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet-tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
