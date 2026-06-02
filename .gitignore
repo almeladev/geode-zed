@@ -17,5 +17,5 @@ __pycache__/
 # Logs
 *.log
 
-# Samples (vista previa local del tema — no forma parte del tema publicado)
+# Samples (local theme preview — not part of the published theme)
 samples/
