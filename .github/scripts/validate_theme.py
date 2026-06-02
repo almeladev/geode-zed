@@ -111,7 +111,7 @@ ANSI_BASES = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "whi
 # background. Listing them explicitly means a new, *accidental* collision still
 # surfaces instead of hiding in expected noise.
 INTENTIONAL_BG_COLLISIONS = {
-    ("Geode", "terminal.ansi.black"),
+    ("Geode Dark", "terminal.ansi.black"),
 }
 
 
