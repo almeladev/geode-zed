@@ -34,9 +34,12 @@ the accessibility/coherence promises Geode makes in its README:
   - any ANSI bright_/dim_ variant whose lightness runs the wrong way (a bright
     that is darker than its base, or a dim that is lighter) is flagged as a
     likely swap.
-  - string and number share a tonal register and adjacent hues, so they can
-    converge under simulated red-green color-vision deficiency; the gap is
-    reported (literals lean on quotes/syntax, not hue) but never fails the build.
+  - string and number share a tonal register, so a lightness-only check would call
+    them "converged" under red-green color-vision deficiency. But they are different
+    hues, and dichromacy preserves the blue-yellow axis, so they stay far apart in
+    full color (~ΔE 40). We report (non-fatal) only a genuine collapse — a small
+    CIELAB ΔE on the CVD-simulated pair — not a mere lightness coincidence; literals
+    also lean on non-color cues (quotes, syntax), not hue.
 
 The predictive/ghost-text token is intentionally dim and is excluded from the
 contrast checks (it is not a "meaningful" token).
@@ -172,6 +175,30 @@ def _lab_lightness(hex_color):
     return 116 * y ** (1 / 3) - 16 if y > 0.008856 else 903.3 * y
 
 
+def _lab(hex_color):
+    """CIELAB (L*, a*, b*) of an opaque sRGB color (D65 white point)."""
+    def lin(c):
+        c /= 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    r, g, b, _ = _channels(hex_color)
+    R, G, B = lin(r), lin(g), lin(b)
+    x = (0.4124 * R + 0.3576 * G + 0.1805 * B) / 0.95047
+    y = 0.2126 * R + 0.7152 * G + 0.0722 * B
+    z = (0.0193 * R + 0.1192 * G + 0.9505 * B) / 1.08883
+
+    def f(t):
+        return t ** (1 / 3) if t > 0.008856 else 7.787 * t + 16 / 116
+
+    fx, fy, fz = f(x), f(y), f(z)
+    return (116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz))
+
+
+def _delta_e(c1, c2):
+    """CIE76 color difference (Euclidean distance in CIELAB)."""
+    return sum((p - q) ** 2 for p, q in zip(_lab(c1), _lab(c2))) ** 0.5
+
+
 def _simulate_cvd(hex_color, matrix):
     """Project an sRGB color through a dichromat matrix (in linear sRGB) -> #RRGGBB."""
     def to_lin(c):
@@ -298,18 +325,28 @@ def check_structure_separation(name, style, errors):
 
 
 LITERAL_CVD_PAIRS = (("string", "number"),)
-LITERAL_CVD_FLOOR = 8.0  # same floor as member/function, but surfaced as a warning
+# string (emerald) and number (aquamarine) share a tonal register, so they coincide
+# in *lightness* — a ΔL*-only check would call them "converged" under red-green CVD.
+# But they are different hues, and red-green dichromacy preserves the blue-yellow
+# axis, so the pair normally stays far apart in full color there (~ΔE 40: emerald
+# leans yellow-green, aquamarine leans blue). Lightness is the wrong axis for a
+# cross-hue pair, so we measure the full CIELAB ΔE on the CVD-simulated colors and
+# warn only on a genuine collapse. (Contrast check_structure_separation, where
+# members/functions share *one* hue, so ΔL* there is the only available axis — these
+# two checks stay distinct on purpose.)
+LITERAL_CVD_DELTA_E = 15.0
 
 
 def check_literal_separation(name, style, warnings):
-    """Warn when two same-tonal-level value tokens converge under red-green CVD.
+    """Warn only when two same-tonal-level value tokens truly collapse under CVD.
 
-    ``string`` (emerald) and ``number`` (aquamarine) share a tonal register and sit
-    on adjacent hues, so they can collapse under simulated deuteranopia/protanopia.
-    Six gems can't all stay distinct under dichromacy, and any cyan that clears AA
-    on the light canvas is forced near-isoluminant with the green, so this is a
-    *warning*, not an error: literals lean on non-color cues (a string's quotes,
-    the surrounding syntax), and surfacing the gap keeps the trade-off honest.
+    ``string`` (emerald) and ``number`` (aquamarine) coincide in lightness but differ
+    in hue; red-green color-vision deficiency keeps the blue-yellow axis, so they stay
+    distinct in full color even when their ΔL* is ~0. We therefore measure the CIELAB
+    ΔE between the CVD-simulated colors and surface a non-fatal warning only if it
+    falls below LITERAL_CVD_DELTA_E — an actual perceptual collapse, not a lightness
+    coincidence. Literals also lean on non-color cues (a string's quotes, the
+    surrounding syntax), not hue.
     """
     syntax = style.get("syntax", {})
     for a, b in LITERAL_CVD_PAIRS:
@@ -318,15 +355,12 @@ def check_literal_separation(name, style, warnings):
         if not (ca and cb and HEX.match(ca) and HEX.match(cb)):
             continue
         for kind, matrix in CVD_MATRICES.items():
-            delta = abs(
-                _lab_lightness(_simulate_cvd(ca, matrix))
-                - _lab_lightness(_simulate_cvd(cb, matrix))
-            )
-            if delta < LITERAL_CVD_FLOOR:
+            de = _delta_e(_simulate_cvd(ca, matrix), _simulate_cvd(cb, matrix))
+            if de < LITERAL_CVD_DELTA_E:
                 warnings.append(
-                    f"{name}: {a} ({ca}) and {b} ({cb}) collapse to "
-                    f"ΔL*={delta:.1f} under simulated {kind} — literals "
-                    f"rely on non-color cues (quotes, syntax), not hue"
+                    f"{name}: {a} ({ca}) and {b} ({cb}) collapse to ΔE={de:.1f} "
+                    f"under simulated {kind} — they coincide in color, not just "
+                    f"lightness; literals lean on non-color cues (quotes, syntax)"
                 )
 
 

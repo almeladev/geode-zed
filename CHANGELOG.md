@@ -5,6 +5,29 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **The string↔number color-vision-deficiency check now measures full color, not
+  just lightness.** `string` (emerald) and `number` (aquamarine) sit at the same
+  tonal level, so the previous ΔL\*-only check reported them as "converging" under
+  simulated deuteranopia/protanopia — but they are different hues, and red-green CVD
+  preserves the blue-yellow axis, where the pair stays ~ΔE 40 apart (clearly distinct
+  for a dichromat). `validate_theme.py` now computes the CIELAB ΔE on the
+  CVD-simulated colors and warns only on a genuine collapse, so the lightness-only
+  warning no longer fires. `CONTRIBUTING.md` is corrected to match. The
+  member/function guard is unchanged — those share one hue, so lightness (ΔL\*) is
+  the right axis there.
+
+### Added
+
+- A **README "Accessibility"** section that surfaces the WCAG AA and
+  color-vision-deficiency testing (previously documented only in `CONTRIBUTING.md`)
+  and states the literal-token nuance honestly: `string` and `number` coincide in
+  brightness but stay distinct in color for red-green CVD, and lean on quotes and
+  surrounding syntax besides.
+
 ## [1.1.1] - 2026-06-02
 
 ### Changed

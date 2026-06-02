@@ -83,18 +83,26 @@ Please keep changes consistent with the ideas that make Geode coherent:
   (`text.muted`, `text.placeholder`, `editor.line_number`, muted icons) and the
   eight base terminal colors — `validate_theme.py` now enforces these too, so a
   regression fails CI. The one exception is predictive (ghost) text: it is
-  intentionally dim to read as a suggestion, so the validator skips it.
+  intentionally dim to read as a suggestion, so the validator skips it. The neutral
+  tokens — comments, punctuation, operators — are tuned to sit *just* above the AA
+  floor on the active line on purpose (as recessive as legibility allows), so don't
+  read their thin margin as slack to spend: CI hard-fails the moment a meaningful
+  token dips below 4.5:1.
 - **Don't lean on red↔green alone.** Color-blind readers can't separate ruby from
   emerald, so diffs and diagnostics must keep working through Zed's structural
   cues (gutter +/− markers, diagnostic icons) and the semantic `*.background`
   tints — never through hue by itself.
 - **WCAG AA is contrast against the background, not between tokens.** Six
-  same-tonal-level hues can't all stay distinct under color-vision deficiency:
-  emerald strings and aquamarine numbers converge under simulated deuteranopia
-  and protanopia. Literals lean on non-color cues instead — a string's quotes and
-  the surrounding syntax — exactly as diffs and diagnostics lean on the gutter and
-  icons. `validate_theme.py` reports that CVD lightness gap as a non-fatal warning
-  so the trade-off stays visible.
+  same-tonal-level hues can't all stay distinct under color-vision deficiency — but
+  "distinct" means *color*, not *lightness*. Emerald strings and aquamarine numbers
+  sit at the same tonal level, so they coincide in brightness; under red-green CVD,
+  though, the blue-yellow axis is preserved, so the two stay far apart in full color
+  (~ΔE 40 — emerald leans yellow-green, aquamarine leans blue). `validate_theme.py`
+  measures that full-color ΔE on the CVD-simulated pair (not a lightness-only gap)
+  and warns only on a genuine collapse. Literals also lean on non-color cues — a
+  string's quotes and the surrounding syntax — exactly as diffs and diagnostics lean
+  on the gutter and icons. (Pure lightness separation only matters for the much rarer
+  total color blindness, achromatopsia.)
 
 > **Two tints sit outside the six-gem set.** Zed needs eight distinct `players`
 > colors, so the gems are extended with a lighter amethyst (collaborator cursors
