@@ -339,7 +339,7 @@
             "font_weight": null
           },
           "string.regex": {
-            "color": "#7eddd6ff",
+            "color": "#efa880ff",
             "font_style": null,
             "font_weight": null
           },
@@ -389,7 +389,7 @@
             "font_weight": null
           },
           "variable.parameter": {
-            "color": "#e1e9efff",
+            "color": "#a9a2bdff",
             "font_style": null,
             "font_weight": null
           },
@@ -404,7 +404,7 @@
             "font_weight": null
           },
           "parameter": {
-            "color": "#e1e9efff",
+            "color": "#a9a2bdff",
             "font_style": null,
             "font_weight": null
           },
@@ -799,7 +799,7 @@
             "font_weight": null
           },
           "string.regex": {
-            "color": "#196b66ff",
+            "color": "#9c5018ff",
             "font_style": null,
             "font_weight": null
           },
@@ -849,7 +849,7 @@
             "font_weight": null
           },
           "variable.parameter": {
-            "color": "#312a41ff",
+            "color": "#5b5470ff",
             "font_style": null,
             "font_weight": null
           },
@@ -864,7 +864,7 @@
             "font_weight": null
           },
           "parameter": {
-            "color": "#312a41ff",
+            "color": "#5b5470ff",
             "font_style": null,
             "font_weight": null
           },

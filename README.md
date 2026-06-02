@@ -15,7 +15,7 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 ## Why Geode
 
-Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet‑tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables and parameters stay neutral, and properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
+Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet‑tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
 
 A few principles hold the palette together:
 
@@ -40,7 +40,7 @@ The light cut keeps the same hues as the dark one and only darkens each gem as f
 - **Emerald** — strings
 - **Ruby** — errors and removed lines, and nothing else
 
-Variables and parameters stay neutral; properties and members take a calm periwinkle, so the shape of the data shows without competing with the gems.
+Variables stay neutral and parameters take a quieter recessive tone of their own; properties and members take a calm periwinkle, and regular expressions a warm amber — the one warm tone, for a language within the language — so the shape of the data shows without competing with the gems.
 
 ## Install
 
