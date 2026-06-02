@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- The README preview (`assets/preview.svg`) redraws the agent panel's message
+  composer to match Zed's UI — a paper-plane send control, the expand affordance,
+  a reticle and text-plus-chevron model selectors. Artwork only; the theme is
+  unchanged.
+
 ## [2.0.0] - 2026-06-02
 
 ### Changed
@@ -271,6 +280,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[unreleased]: https://github.com/almeladev/geode-zed/compare/2.0.0...HEAD
 [2.0.0]: https://github.com/almeladev/geode-zed/compare/1.1.4...2.0.0
 [1.1.4]: https://github.com/almeladev/geode-zed/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/almeladev/geode-zed/compare/1.1.2...1.1.3
