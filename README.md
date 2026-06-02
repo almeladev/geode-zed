@@ -44,13 +44,10 @@ Variables stay neutral and parameters take a quieter recessive tone of their own
 
 ## Accessibility
 
-Contrast and color-vision are checked in CI, not by eye:
+Geode is made to stay readable for everyone, and every change is checked automatically rather than judged by eye:
 
-- **WCAG AA, enforced.** Every meaningful token clears 4.5:1 against the canvas and the active line, and stays above the AA-large 3:1 floor under selections and search highlights, in both cuts. The UI chrome you read all day — muted and placeholder text, line numbers, muted icons — and the eight base terminal colors clear their floors too, so a regression fails the build.
-- **Color-vision deficiency.** Accents stay at least 40° apart in hue, and members hold a perceptual lightness gap from functions that survives simulated deuteranopia and protanopia (Viénot 1999) — so a `foo.bar()` chain never flattens into one blue.
-- **An honest edge.** Strings and numbers share a tonal level, so they coincide in *brightness*; under red-green color-vision deficiency they stay distinct in *color* (the blue-yellow axis is preserved, ~ΔE 40 apart) and lean on quotes and surrounding syntax besides. Diffs and diagnostics never rely on red-versus-green alone — they keep working through gutter markers, icons and tinted backgrounds.
-
-[`CONTRIBUTING.md`](./CONTRIBUTING.md) has the exact thresholds and the validator that enforces them.
+- **Comfortable to read, light or dark.** Text keeps its contrast against the background everywhere it matters — including the current line, selections and search highlights — so nothing washes out as you work.
+- **Friendly to color-blind readers.** Nothing important rides on telling red from green: diffs, errors and warnings stay clear through icons, gutter marks and soft background tints, not color alone — and the palette is tested against the common kinds of color blindness.
 
 ## Install
 
