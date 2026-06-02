@@ -42,6 +42,16 @@ The light cut keeps the same hues as the dark one and only darkens each gem as f
 
 Variables stay neutral and parameters take a quieter recessive tone of their own; properties and members take a calm periwinkle, and regular expressions a warm amber — the one warm tone, for a language within the language — so the shape of the data shows without competing with the gems.
 
+## Accessibility
+
+Contrast and color-vision are checked in CI, not by eye:
+
+- **WCAG AA, enforced.** Every meaningful token clears 4.5:1 against the canvas and the active line, and stays above the AA-large 3:1 floor under selections and search highlights, in both cuts. The UI chrome you read all day — muted and placeholder text, line numbers, muted icons — and the eight base terminal colors clear their floors too, so a regression fails the build.
+- **Color-vision deficiency.** Accents stay at least 40° apart in hue, and members hold a perceptual lightness gap from functions that survives simulated deuteranopia and protanopia (Viénot 1999) — so a `foo.bar()` chain never flattens into one blue.
+- **An honest edge.** Strings and numbers share a tonal level, so they coincide in *brightness*; under red-green color-vision deficiency they stay distinct in *color* (the blue-yellow axis is preserved, ~ΔE 40 apart) and lean on quotes and surrounding syntax besides. Diffs and diagnostics never rely on red-versus-green alone — they keep working through gutter markers, icons and tinted backgrounds.
+
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) has the exact thresholds and the validator that enforces them.
+
 ## Install
 
 **From the Zed registry** (recommended)
