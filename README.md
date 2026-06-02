@@ -15,7 +15,7 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 ## Why Geode
 
-Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet‑tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
+Most dark themes color everything. Geode does the opposite: the canvas is a quiet, violet-tinted stone, and color is spent only on the tokens worth finding — keywords, types, functions, strings and values. Variables stay neutral and parameters recede a touch further, while properties take a calm periwinkle — the shape of the data — so your eye lands where the logic is.
 
 A few principles hold the palette together:
 
@@ -23,7 +23,7 @@ A few principles hold the palette together:
 - **The gems are a set, not a scatter.** Every accent shares one tonal level and stays at least 40° apart in hue, in both variants.
 - **Structure shows its shape.** Members and properties take a calm periwinkle — not a gem — so object keys and member chains read as data structure without competing with the accents.
 - **One color, one meaning.** Ruby is reserved for things that went wrong — errors and removed lines — so it never cries wolf on an ordinary number.
-- **Readable everywhere.** Every meaningful token clears WCAG AA (4.5:1) against the canvas in both cuts — including on the active line — and stays above the AA‑large 3:1 floor under selections and search highlights.
+- **Readable everywhere.** Every meaningful token clears WCAG AA (4.5:1) against the canvas in both cuts — including on the active line — and stays above the AA-large 3:1 floor under selections and search highlights.
 
 ## Palette
 

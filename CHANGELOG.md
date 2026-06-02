@@ -5,6 +5,30 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-06-02
+
+### Changed
+
+- **Docs brought in line with the 1.1.0 palette.** `CONTRIBUTING.md` now documents
+  parameters' own recessive tint, the current periwinkle (`#c0c2e8` / `#343a82`)
+  and the real member/function guard (`MIN_STRUCTURE_DELTA_L` plus the
+  color-vision-deficiency floor), and records that amber now also carries
+  `string.regex`, not just collaborator cursors.
+
+### Added
+
+- The theme validator now reports the string↔number ΔL\* under simulated
+  deuteranopia/protanopia as a **non-fatal warning**: six same-tonal-level hues
+  can't all stay distinct under dichromacy, so literals lean on non-color cues
+  (quotes, syntax), and the warning keeps that trade-off visible rather than silent.
+
+### Fixed
+
+- The changelog's compare links: they pointed at `v`-prefixed tags, but the repo's
+  tags are unprefixed, so the links 404'd. They now use the real tag names, and the
+  previously-absent `[1.1.0]` link is restored. Also the non-breaking hyphens in
+  `README.md`.
+
 ## [1.1.0] - 2026-06-02
 
 ### Changed
@@ -192,7 +216,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
-[1.0.2]: https://github.com/almeladev/geode-zed/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/almeladev/geode-zed/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/almeladev/geode-zed/compare/v0.1.0...v1.0.0
-[0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/v0.1.0
+[1.1.1]: https://github.com/almeladev/geode-zed/compare/1.1.0...1.1.1
+[1.1.0]: https://github.com/almeladev/geode-zed/compare/1.0.2...1.1.0
+[1.0.2]: https://github.com/almeladev/geode-zed/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/almeladev/geode-zed/compare/1.0.0...1.0.1
+[1.0.0]: https://github.com/almeladev/geode-zed/compare/0.1.0...1.0.0
+[0.1.0]: https://github.com/almeladev/geode-zed/releases/tag/0.1.0

@@ -58,15 +58,19 @@ Please keep changes consistent with the ideas that make Geode coherent:
 
 - **Amethyst is the hero accent.** Keep it the most prominent color and the one
   used across interactive UI (selection, focus, active line).
-- **Structure has its own color.** Variables and parameters use the foreground
-  color; members and properties (`property`, `field`, `variable.member`) use
-  **periwinkle** (`#b9bdf0` dark / `#3a4090` light) — a calm blue-lavender that
+- **Structure has its own color.** Variables use the foreground color; parameters
+  (`variable.parameter`, `parameter`) take a quieter recessive tint of their own
+  (`#a9a2bd` dark / `#5b5470` light), and members and properties (`property`,
+  `field`, `variable.member`) use
+  **periwinkle** (`#c0c2e8` dark / `#343a82` light) — a calm blue-lavender that
   reads as the shape of the data. It is not an accent (not in `accents`), so the
   40° rule doesn't apply, but it must clear AA and stay visibly distinct from
   both sapphire functions and citrine types. Both cuts share the same hue (~236°),
   intentionally close to sapphire — so periwinkle separates from functions by
-  **weight, not hue**: the validator requires a minimum luminance contrast
-  (`MIN_STRUCTURE_SEPARATION`, ≥ 1.30:1) between members and functions, or a
+  **weight, not hue**. The validator enforces this perceptually: a CIELAB
+  lightness gap (`MIN_STRUCTURE_DELTA_L`, ΔL* >= 10) that must also survive a
+  simulated red-green color-vision deficiency (`MIN_STRUCTURE_DELTA_L_CVD`,
+  ΔL* >= 8) between members and functions, or a
   `foo.bar()` chain starts to read as one flat blue. Keep that gap when retuning.
   Reserve the gems for keywords, types, functions, strings and literals.
 - **One color, one meaning.** Ruby is for errors and removed diff lines only.
@@ -84,12 +88,20 @@ Please keep changes consistent with the ideas that make Geode coherent:
   emerald, so diffs and diagnostics must keep working through Zed's structural
   cues (gutter +/− markers, diagnostic icons) and the semantic `*.background`
   tints — never through hue by itself.
+- **WCAG AA is contrast against the background, not between tokens.** Six
+  same-tonal-level hues can't all stay distinct under color-vision deficiency:
+  emerald strings and aquamarine numbers converge under simulated deuteranopia
+  and protanopia. Literals lean on non-color cues instead — a string's quotes and
+  the surrounding syntax — exactly as diffs and diagnostics lean on the gutter and
+  icons. `validate_theme.py` reports that CVD lightness gap as a non-fatal warning
+  so the trade-off stays visible.
 
-> **Collaboration cursors are the one exception to the six-gem set.** Zed needs
-> eight distinct `players` colors, so the six gems are extended with two extra
-> tints — a lighter amethyst and a warm coral/amber — used only for collaborator
-> cursors and selections. They never carry syntax or UI meaning, so they stay
-> outside the semantic palette.
+> **Two tints sit outside the six-gem set.** Zed needs eight distinct `players`
+> colors, so the gems are extended with a lighter amethyst (collaborator cursors
+> only) and a warm amber. The amber does double duty — a collaborator cursor
+> (`#efa880` dark / `#bf6a25` light) and, since 1.1.0, `string.regex`, the one warm
+> syntax tone, darkened to clear AA on the pale canvas (`#efa880` dark / `#9c5018`
+> light). Reserve amber for regex; it is the only token outside the gems.
 
 ## Submitting changes
 

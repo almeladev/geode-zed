@@ -34,6 +34,9 @@ the accessibility/coherence promises Geode makes in its README:
   - any ANSI bright_/dim_ variant whose lightness runs the wrong way (a bright
     that is darker than its base, or a dim that is lighter) is flagged as a
     likely swap.
+  - string and number share a tonal register and adjacent hues, so they can
+    converge under simulated red-green color-vision deficiency; the gap is
+    reported (literals lean on quotes/syntax, not hue) but never fails the build.
 
 The predictive/ghost-text token is intentionally dim and is excluded from the
 contrast checks (it is not a "meaningful" token).
@@ -294,6 +297,39 @@ def check_structure_separation(name, style, errors):
             )
 
 
+LITERAL_CVD_PAIRS = (("string", "number"),)
+LITERAL_CVD_FLOOR = 8.0  # same floor as member/function, but surfaced as a warning
+
+
+def check_literal_separation(name, style, warnings):
+    """Warn when two same-tonal-level value tokens converge under red-green CVD.
+
+    ``string`` (emerald) and ``number`` (aquamarine) share a tonal register and sit
+    on adjacent hues, so they can collapse under simulated deuteranopia/protanopia.
+    Six gems can't all stay distinct under dichromacy, and any cyan that clears AA
+    on the light canvas is forced near-isoluminant with the green, so this is a
+    *warning*, not an error: literals lean on non-color cues (a string's quotes,
+    the surrounding syntax), and surfacing the gap keeps the trade-off honest.
+    """
+    syntax = style.get("syntax", {})
+    for a, b in LITERAL_CVD_PAIRS:
+        ca = syntax.get(a, {}).get("color")
+        cb = syntax.get(b, {}).get("color")
+        if not (ca and cb and HEX.match(ca) and HEX.match(cb)):
+            continue
+        for kind, matrix in CVD_MATRICES.items():
+            delta = abs(
+                _lab_lightness(_simulate_cvd(ca, matrix))
+                - _lab_lightness(_simulate_cvd(cb, matrix))
+            )
+            if delta < LITERAL_CVD_FLOOR:
+                warnings.append(
+                    f"{name}: {a} ({ca}) and {b} ({cb}) collapse to "
+                    f"ΔL*={delta:.1f} under simulated {kind} — literals "
+                    f"rely on non-color cues (quotes, syntax), not hue"
+                )
+
+
 def check_ui_contrast(name, style, errors):
     """Enforce legible contrast for the UI chrome the validator used to ignore.
 
@@ -434,6 +470,7 @@ def main() -> int:
         check_terminal_contrast(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)
         check_terminal_ramp(name, t["style"], warnings)
+        check_literal_separation(name, t["style"], warnings)
 
     if warnings:
         print(f"WARN: {len(warnings)} note(s) in {path}:", file=sys.stderr)
