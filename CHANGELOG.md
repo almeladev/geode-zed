@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2026-06-02
+
+### Changed
+
+- **The README's design principles drop the color-science jargon.** "The gems are a
+  set" and "Readable everywhere" no longer cite the 40°-hue separation or the
+  WCAG AA / AA-large ratios; the user-facing pitch stays in plain language, while the
+  exact figures remain in `CONTRIBUTING.md` and the reader-facing summary in the
+  README's Accessibility section.
+
 ## [1.1.3] - 2026-06-02
 
 ### Changed
@@ -249,6 +259,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[1.1.4]: https://github.com/almeladev/geode-zed/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/almeladev/geode-zed/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/almeladev/geode-zed/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/almeladev/geode-zed/compare/1.1.0...1.1.1
