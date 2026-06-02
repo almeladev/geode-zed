@@ -5,14 +5,28 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.1] - 2026-06-02
+
+### Added
+
+- `.github/scripts/build_preview.py` — a dependency-free generator that draws the
+  README artwork straight from `themes/geode.json` — plus two standalone single-window
+  previews, `assets/preview-dark.svg` and `assets/preview-light.svg`.
 
 ### Changed
 
-- The README preview (`assets/preview.svg`) redraws the agent panel's message
-  composer to match Zed's UI — a paper-plane send control, the expand affordance,
-  a reticle and text-plus-chevron model selectors. Artwork only; the theme is
-  unchanged.
+- The README preview is **regenerated from the theme** rather than hand-drawn, and
+  redrawn as a realistic Zed window: a file tree, editor tabs, a line-number gutter,
+  the active line and cursor, a completions popup, the agent panel and composer, and
+  the status bar. `assets/preview.svg` now shows both variants side by side (Geode
+  Dark on the left). Code is drawn as abstract token bars, so no language is favored.
+  Artwork and tooling only — the theme is unchanged.
+- The README gains a **Preview** section with per-variant dropdowns, and its prose no
+  longer repeats the "light or dark" qualifier in every section or frames the light
+  cut as derived from the dark one — the two cuts read as equals.
+- `check_asset_colors.py` now guards all three previews (every color traces back to
+  `themes/geode.json`, no allowlist), CI runs on `assets/**`, and `CONTRIBUTING.md`
+  documents regenerating the previews.
 
 ## [2.0.0] - 2026-06-02
 
@@ -280,7 +294,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
-[unreleased]: https://github.com/almeladev/geode-zed/compare/2.0.0...HEAD
+[unreleased]: https://github.com/almeladev/geode-zed/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/almeladev/geode-zed/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/almeladev/geode-zed/compare/1.1.4...2.0.0
 [1.1.4]: https://github.com/almeladev/geode-zed/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/almeladev/geode-zed/compare/1.1.2...1.1.3
