@@ -11,7 +11,7 @@ Color only where it carries meaning — dark and light, cut from the same stone.
 
 <img src="assets/preview.svg" width="100%" alt="Geode for Zed — light and dark windows" />
 
-<div align="center"><sub>Geode Light (back) · Geode (front)</sub></div>
+<div align="center"><sub>Geode Light (back) · Geode Dark (front)</sub></div>
 
 ## Why Geode
 
@@ -55,13 +55,13 @@ Geode is made to stay readable for everyone, and every change is checked automat
 
 1. Open the command palette — <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>P</kbd> — and run `zed: extensions`.
 2. Search for **Geode** and install.
-3. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
+3. Run `theme selector: toggle` and pick **Geode Dark** or **Geode Light**.
 
 **Manual** (for development or pinning a version)
 
 1. Copy `themes/geode.json` into your Zed themes folder — `~/.config/zed/themes/`
    on macOS and Linux, or `%APPDATA%\Zed\themes\` on Windows.
-2. Run `theme selector: toggle` and pick **Geode** or **Geode Light**.
+2. Run `theme selector: toggle` and pick **Geode Dark** or **Geode Light**.
 
 ## Development
 

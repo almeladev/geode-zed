@@ -7,7 +7,7 @@ body:
     attributes:
       label: Variant
       options:
-        - Geode (dark)
+        - Geode Dark
         - Geode Light
         - Both
     validations:

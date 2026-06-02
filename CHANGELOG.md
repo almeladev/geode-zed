@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-06-02
+
+### Changed
+
+- **BREAKING — naming only, the colors are unchanged.** The dark variant is renamed
+  from **Geode** to **Geode Dark**, so the two cuts read as an explicit pair in Zed's
+  theme picker — matching the editor's own built-ins (`One Dark` / `One Light`,
+  `Gruvbox Dark` / `Gruvbox Light`) and Catppuccin. The extension is still **Geode** in
+  the registry, and **Geode Light** is unchanged.
+- If your settings pinned `"theme": "Geode"`, switch it to `"theme": "Geode Dark"` (or
+  pick **Geode Dark** from `theme selector: toggle`).
+
 ## [1.1.4] - 2026-06-02
 
 ### Changed
@@ -259,6 +271,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `assets/preview.svg` must trace back to a color `themes/geode.json` defines.
 
 
+[2.0.0]: https://github.com/almeladev/geode-zed/compare/1.1.4...2.0.0
 [1.1.4]: https://github.com/almeladev/geode-zed/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/almeladev/geode-zed/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/almeladev/geode-zed/compare/1.1.1...1.1.2

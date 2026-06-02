@@ -13,7 +13,7 @@
 
 ## Affected variants
 
-- [ ] Geode (dark)
+- [ ] Geode Dark
 - [ ] Geode Light
 
 ## Checklist
