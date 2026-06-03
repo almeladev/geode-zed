@@ -26,8 +26,11 @@ python3 .github/scripts/check_conventional_commits.py   # checks origin/main..HE
 ```
 
 The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
-accent separation (and prints non-fatal warnings, e.g. for ANSI colors that sit
-on the terminal background). The second keeps the README artwork honest: every
+accent separation — including the eight collaborator `players`: the full set must
+be present, each cursor/block marker must stay visible (3:1) on the canvas, and
+every meaningful token must stay legible over every player's selection (not just
+the host's). It also prints non-fatal warnings, e.g. for ANSI colors that sit on
+the terminal background. The second keeps the README artwork honest: every
 color in the SVG assets must trace back to a color the theme defines, so a token
 you re-tune can't silently drift out of date in the swatches or previews. The
 third guards that any released `version` in

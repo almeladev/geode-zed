@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `validate_theme.py` now covers the eight collaborator `players` colors, the one
+  surface it previously left unchecked: it requires the full set of eight to be
+  present, verifies each cursor/block marker stays visible on the editor canvas
+  (the 3:1 of WCAG 1.4.11, since a marker is a graphical object), and extends the
+  selection-legibility check so every meaningful token must stay readable over
+  *every* player's selection, not just the host's. Player colors are still allowed
+  outside the accent set by design, so this checks visibility, not palette
+  membership. Tooling only — the theme is unchanged.
+
 ## [2.0.1] - 2026-06-02
 
 ### Added

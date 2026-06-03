@@ -23,6 +23,12 @@ the accessibility/coherence promises Geode makes in its README:
   - members/properties (periwinkle) stay distinct from functions (sapphire),
     which share their hue by design, by a perceptual CIELAB lightness gap that
     also survives a simulated red-green color-vision deficiency.
+  - the collaborator player colors are present and complete (Zed cycles through
+    eight) and each cursor/block marker stays visible (the 3:1 of WCAG 1.4.11)
+    on the editor canvas; every meaningful token also stays legible over every
+    player's selection, not just the host's. Player colors may sit outside the
+    accent set by design (a lighter amethyst and a warm amber fill the last two
+    slots), so this checks visibility, not palette membership.
 
   Warnings (non-fatal)
   - any terminal ANSI color that collapses to the terminal background (so text
@@ -254,11 +260,17 @@ def check_quality(name, style, errors):
     add_surface("read highlight", "editor.document_highlight.read_background", AA_LARGE)
     add_surface("write highlight", "editor.document_highlight.write_background", AA_LARGE)
 
+    # Every player's selection sits on top of meaningful code: the host's covers
+    # what you select, a collaborator's covers what they select. Both must keep
+    # the code under them legible, so each is added as a surface (AA-large 3:1),
+    # not just players[0].
     players = style.get("players") or []
-    if players and isinstance(players[0], dict) and players[0].get("selection"):
-        surfaces.append(("selection", composite(players[0]["selection"], bg), AA_LARGE))
-    else:
+    if not (players and isinstance(players[0], dict) and players[0].get("selection")):
         errors.append(f"{name}: missing players[0].selection; cannot check contrast on selection")
+    for i, p in enumerate(players):
+        if isinstance(p, dict) and p.get("selection"):
+            label = "selection" if i == 0 else f"selection (player {i})"
+            surfaces.append((label, composite(p["selection"], bg), AA_LARGE))
 
     for token, spec in style.get("syntax", {}).items():
         if token in DIM_TOKENS:
@@ -322,6 +334,50 @@ def check_structure_separation(name, style, errors):
                 f"{MIN_STRUCTURE_DELTA_L_CVD}) — the two blues must stay legibly "
                 f"distinct under red-green color-vision deficiency"
             )
+
+
+# Zed cycles through eight collaborator player colors, so a theme must define
+# exactly eight. Each is a solid marker on the canvas (a caret and a cursor
+# block), so cursor and background are graphical objects that must clear the 3:1
+# of WCAG 1.4.11 against the editor background to stay visible. Player colors are
+# deliberately allowed outside the accent set (a lighter amethyst and a warm
+# amber fill the last two slots), so this is a visibility check, not a
+# palette-membership one; selection legibility is covered in check_quality.
+PLAYER_COUNT = 8
+
+
+def check_players(name, style, errors):
+    """Require the collaborator player colors to be complete and visible.
+
+    check_quality already treats each player's *selection* as a surface code
+    must stay legible over. This covers the other half: the right *number* of
+    players, and that each solid marker (cursor and its block background) stays
+    visible against the editor canvas. Missing keys are skipped, not crashed on.
+    """
+    players = style.get("players") or []
+    if len(players) != PLAYER_COUNT:
+        errors.append(
+            f"{name}: defines {len(players)} player color(s); Zed cycles through "
+            f"{PLAYER_COUNT}, so the theme must define exactly {PLAYER_COUNT}"
+        )
+
+    bg = style.get("editor.background")
+    if not bg:
+        return
+    for i, p in enumerate(players):
+        if not isinstance(p, dict):
+            continue
+        for slot in ("cursor", "background"):
+            val = p.get(slot)
+            if not (val and HEX.match(val)):
+                continue
+            ratio = contrast_ratio(composite(val, bg), bg)
+            if ratio < AA_LARGE:
+                errors.append(
+                    f"{name}: players[{i}].{slot} ({val}) is {ratio:.2f}:1 on the "
+                    f"editor background (needs >= {AA_LARGE}:1 — a collaborator "
+                    f"marker must stay visible on the canvas)"
+                )
 
 
 LITERAL_CVD_PAIRS = (("string", "number"),)
@@ -500,6 +556,7 @@ def main() -> int:
         walk_colors(t["style"], f"{name}.style", errors)
         check_quality(name, t["style"], errors)
         check_structure_separation(name, t["style"], errors)
+        check_players(name, t["style"], errors)
         check_ui_contrast(name, t["style"], errors)
         check_terminal_contrast(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)
@@ -518,8 +575,8 @@ def main() -> int:
         return 1
 
     print(f"OK: {path} valid — {len(themes)} variant(s), all colors well-formed,")
-    print("    AA contrast (syntax, UI chrome and base terminal colors) and")
-    print("    >= 40 deg accent separation hold in every variant.")
+    print("    AA contrast (syntax, UI chrome and base terminal colors), visible")
+    print("    player markers and >= 40 deg accent separation hold in every variant.")
     return 0
 
 
