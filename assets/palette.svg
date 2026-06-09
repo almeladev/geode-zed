@@ -27,9 +27,9 @@
 <rect x="34" y="305" width="13" height="13" rx="3" fill="#c0c2e8"/>
 <text x="58" y="316" font-size="14.5" fill="#c0c2e8">Periwinkle</text>
 <text x="430" y="316" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#c0c2e8</text>
-<rect x="34" y="339" width="13" height="13" rx="3" fill="#9690a4"/>
-<text x="58" y="350" font-size="14.5" fill="#9690a4">Comment</text>
-<text x="430" y="350" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#9690a4</text>
+<rect x="34" y="339" width="13" height="13" rx="3" fill="#b3acc6"/>
+<text x="58" y="350" font-size="14.5" fill="#b3acc6">Comment</text>
+<text x="430" y="350" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#b3acc6</text>
 <rect x="34" y="373" width="13" height="13" rx="3" fill="#a9a2bd"/>
 <text x="58" y="384" font-size="14.5" fill="#a9a2bd">Parameter</text>
 <text x="430" y="384" text-anchor="end" font-size="13" fill="#978fac" font-family="ui-monospace,monospace">#a9a2bd</text>
@@ -64,9 +64,9 @@
 <rect x="486" y="305" width="13" height="13" rx="3" fill="#343a82"/>
 <text x="510" y="316" font-size="14.5" fill="#343a82">Periwinkle</text>
 <text x="882" y="316" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#343a82</text>
-<rect x="486" y="339" width="13" height="13" rx="3" fill="#665d79"/>
-<text x="510" y="350" font-size="14.5" fill="#665d79">Comment</text>
-<text x="882" y="350" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#665d79</text>
+<rect x="486" y="339" width="13" height="13" rx="3" fill="#4a415f"/>
+<text x="510" y="350" font-size="14.5" fill="#4a415f">Comment</text>
+<text x="882" y="350" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#4a415f</text>
 <rect x="486" y="373" width="13" height="13" rx="3" fill="#5b5470"/>
 <text x="510" y="384" font-size="14.5" fill="#5b5470">Parameter</text>
 <text x="882" y="384" text-anchor="end" font-size="13" fill="#696080" font-family="ui-monospace,monospace">#5b5470</text>
