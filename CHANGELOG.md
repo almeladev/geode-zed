@@ -7,8 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **The light terminal's bright/dim ramp ran backwards.** On a light canvas
+  "stronger ink" is darker, but the light cut inherited the dark cut's
+  lightness logic: `bright_*` sat at ~3:1 (below AA — bold output read
+  *fainter* than normal) and `dim_*` at ~7–8:1 (faint output read *bolder*).
+  The values were, in effect, swapped. Now `bright_*` are deeper inks of each
+  base hue (~7.3:1, clearing AA and the base's own weight) and `dim_*` recede
+  toward the canvas (~2.8:1), mirroring how the dark cut has always behaved.
+  The white/black slots realign with the dark cut's structure: `bright_white`
+  is the terminal's bright foreground ink, `dim_white` its dim foreground,
+  `white` the icon gray, and `dim_black` a receding ink gray.
+- **Comments stay AA-legible over every selection.** The comment gray cleared
+  only ~3.8:1 under a selection in the dark cut. It moves up a register — dark
+  `#9690a4` → `#b3acc6`, light `#665d79` → `#4a415f` — so comments now hold
+  ≥ 4.5:1 over all eight players' selections and the active line, and are
+  *clearly* distinct from the punctuation/operator gray instead of
+  near-identical to it: comments are content, punctuation is structure.
+
 ### Changed
 
+- **Near-duplicate grays are unified — one value per role.** A handful of
+  values had drifted 1–8 RGB units apart with no perceptible difference and no
+  design intent. Dark: the line-number and icon-placeholder grays collapse
+  into the placeholder gray `#8c85a0`; `terminal.ansi.dim_black` reuses the
+  indent-guide gray `#2e2a3b`; `panel.indent_guide_hover` reuses the
+  disabled-text gray `#484259`. Light: text/icon placeholders and line numbers
+  share a new `#6e6276` (which now also *recedes* against muted text, as the
+  dark cut's placeholder always did); the indent guides reuse the hairline
+  gray `#dedbe6`. Where two values remain close on purpose (a hairline border
+  one step above its surface), that is a role relationship, not drift.
+- **Ruby leaves the `accents` set.** The README promises ruby is "errors and
+  removed lines, and nothing else", yet it sat in the user-pickable accent
+  list, where it could appear as pure decoration. The accents are now the five
+  non-reserved gems — amber cannot take the sixth slot without breaking the
+  40°-hue-separation rule that keeps the family legible.
+- **`players[4]` matches across cuts.** The light cut used a one-off orange
+  (`#bf6a25`) that matched nothing in the palette; it now reuses the light
+  regex amber `#9c5018`, restoring the dark cut's structure (player five *is*
+  the regex amber in both).
+- **The `hint` triple is one family.** Hint text is the muted gray, but its
+  background and border were sapphire-tinted; they now derive from the same
+  gray as the foreground, in both cuts.
+- `validate_theme.py` closes the gap the light terminal slipped through: the
+  bright/dim ramp is now checked in *contrast* terms (dim must carry less
+  contrast than its base, bright at least as much) so it means the same thing
+  on both canvases, `bright_*` must clear AA like the base colors (bold output
+  is still output), and both are hard errors rather than warnings. The black
+  slot stays exempt by convention (`bright_black` is the terminal's mid-gray
+  register, not a "stronger black").
 - `validate_theme.py` now covers the eight collaborator `players` colors, the one
   surface it previously left unchecked: it requires the full set of eight to be
   present, verifies each cursor/block marker stays visible on the editor canvas
