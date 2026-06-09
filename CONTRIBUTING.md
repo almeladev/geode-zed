@@ -29,8 +29,12 @@ The first enforces structure, well-formed hex, WCAG AA contrast and the ~40°
 accent separation — including the eight collaborator `players`: the full set must
 be present, each cursor/block marker must stay visible (3:1) on the canvas, and
 every meaningful token must stay legible over every player's selection (not just
-the host's). It also prints non-fatal warnings, e.g. for ANSI colors that sit on
-the terminal background. The second keeps the README artwork honest: every
+the host's). The terminal ramp is held in *contrast* terms so it means the same
+thing on both canvases: base and `bright_*` ANSI colors must clear AA, `dim_*`
+must carry less contrast than their base (faint must actually recede) and
+`bright_*` at least as much (the `black` slot is exempt by convention). It also
+prints non-fatal warnings, e.g. for ANSI colors that sit on the terminal
+background. The second keeps the README artwork honest: every
 color in the SVG assets must trace back to a color the theme defines, so a token
 you re-tune can't silently drift out of date in the swatches or previews. The
 third guards that any released `version` in
@@ -101,13 +105,14 @@ Please keep changes consistent with the ideas that make Geode coherent:
 - **Respect contrast — all of it.** Every meaningful token must meet WCAG AA
   against its background in both variants. So must the UI chrome you read all day
   (`text.muted`, `text.placeholder`, `editor.line_number`, muted icons) and the
-  eight base terminal colors — `validate_theme.py` now enforces these too, so a
-  regression fails CI. The one exception is predictive (ghost) text: it is
-  intentionally dim to read as a suggestion, so the validator skips it. The neutral
-  tokens — comments, punctuation, operators — are tuned to sit *just* above the AA
-  floor on the active line on purpose (as recessive as legibility allows), so don't
-  read their thin margin as slack to spend: CI hard-fails the moment a meaningful
-  token dips below 4.5:1.
+  base *and bright* terminal colors — `validate_theme.py` now enforces these too,
+  so a regression fails CI. The one exception is predictive (ghost) text: it is
+  intentionally dim to read as a suggestion, so the validator skips it. Punctuation
+  and operators are tuned to sit *just* above the AA floor on the active line on
+  purpose (as recessive as legibility allows), so don't read their thin margin as
+  slack to spend; comments sit a register above them — clearly distinct, and AA
+  even over selections — because comments are content, punctuation is structure.
+  CI hard-fails the moment a meaningful token dips below 4.5:1.
 - **Don't lean on red↔green alone.** Color-blind readers can't separate ruby from
   emerald, so diffs and diagnostics must keep working through Zed's structural
   cues (gutter +/− markers, diagnostic icons) and the semantic `*.background`

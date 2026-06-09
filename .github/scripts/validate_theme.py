@@ -18,7 +18,16 @@ the accessibility/coherence promises Geode makes in its README:
   - the UI chrome the user reads — muted/placeholder text, line numbers, muted
     icons — clears its floor against the panel/editor surface (text AA 4.5:1,
     icons the 3:1 of WCAG 1.4.11);
-  - the eight base ANSI terminal colors clear AA against the terminal canvas;
+  - the eight base ANSI terminal colors clear AA against the terminal canvas,
+    and so do the bright_ variants — bold output is still output. The dim_
+    variants are exempt from AA (faint is allowed to be faint) but the ramp
+    must run the right way *in contrast terms*: dim_ carries less contrast
+    than its base (it recedes) and bright_ at least as much, in both
+    appearances. Expressing the ramp as contrast rather than raw lightness is
+    what makes it mean the same thing on a light canvas, where "stronger ink"
+    is darker, not lighter. The black slot is exempt: it anchors the canvas
+    (dark) or the ink (light), and bright_black is conventionally the
+    terminal's mid-gray register, not a "stronger black";
   - the accents stay at least 40 degrees apart in hue;
   - members/properties (periwinkle) stay distinct from functions (sapphire),
     which share their hue by design, by a perceptual CIELAB lightness gap that
@@ -37,9 +46,6 @@ the accessibility/coherence promises Geode makes in its README:
     worth surfacing. Deliberate, conventional collisions (a dark theme's "black"
     being its own background) are allowlisted in INTENTIONAL_BG_COLLISIONS so
     only an *accidental* new collision surfaces.
-  - any ANSI bright_/dim_ variant whose lightness runs the wrong way (a bright
-    that is darker than its base, or a dim that is lighter) is flagged as a
-    likely swap.
   - string and number share a tonal register, so a lightness-only check would call
     them "converged" under red-green color-vision deficiency. But they are different
     hues, and dichromacy preserves the blue-yellow axis, so they stay far apart in
@@ -441,18 +447,22 @@ def check_ui_contrast(name, style, errors):
 
 
 def check_terminal_contrast(name, style, errors):
-    """Require the eight base ANSI colors to be legible on the terminal canvas.
+    """Require base and bright ANSI colors to be legible on the terminal canvas.
 
-    A base ANSI color is ordinary program output, so it must clear AA against the
-    terminal background. The conventional dark-theme "black" == background case is
-    allowlisted in INTENTIONAL_BG_COLLISIONS; bright_/dim_ variants are governed by
-    check_terminal_ramp instead.
+    A base ANSI color is ordinary program output, and a bright_ variant is bold
+    output — both are text someone has to read, so both must clear AA against
+    the terminal background. dim_ variants are exempt (faint is allowed to be
+    faint; check_terminal_ramp makes sure it actually *is* faint). The
+    conventional dark-theme "black" == background case is allowlisted in
+    INTENTIONAL_BG_COLLISIONS, and bright_black is exempt: it is the terminal's
+    conventional mid-gray register, not a "stronger black".
     """
     bg = style.get("terminal.background")
     if not bg:
         return
-    for base in ANSI_BASES:
-        key = f"terminal.ansi.{base}"
+    keys = [f"terminal.ansi.{base}" for base in ANSI_BASES]
+    keys += [f"terminal.ansi.bright_{base}" for base in ANSI_BASES if base != "black"]
+    for key in keys:
         val = style.get(key)
         if not (val and HEX.match(val)):
             continue
@@ -493,31 +503,48 @@ def check_terminal(name, style, warnings):
             )
 
 
-def check_terminal_ramp(name, style, warnings):
-    """Surface ANSI variants whose lightness runs the wrong way.
+def check_terminal_ramp(name, style, errors):
+    """Require the ANSI bright_/dim_ ramp to run the right way, in contrast terms.
 
-    A swapped ``bright_*``/``dim_*`` (bright darker than its base, or dim lighter)
-    reads as a mistake, so each is reported as a non-fatal warning. The ``black``
-    slot is exempt from the dim rule: in a dark theme it doubles as the terminal
-    background, so its dim variant sitting marginally above the base is normal.
+    "Dim" (SGR faint) output must recede toward the canvas and "bright" (bold)
+    output must carry at least its base's weight. An earlier version of this
+    check compared raw lightness, which encodes the dark-canvas case only — on a
+    light canvas "stronger ink" is *darker*, so a lightness rule quietly demands
+    the opposite of what a reader experiences. Comparing contrast against the
+    terminal background instead makes the rule mean the same thing in both
+    appearances. The ``black`` slot is exempt: it anchors the canvas (dark
+    theme) or the ink (light theme), and its variants are conventional grays
+    rather than a ramp.
     """
+    bg = style.get("terminal.background")
+    if not bg:
+        return
     for base in ANSI_BASES:
+        if base == "black":
+            continue
         b = style.get(f"terminal.ansi.{base}")
         if not (b and HEX.match(b)):
             continue
-        lb = _relative_luminance(b)
+        rb = contrast_ratio(composite(b, bg), bg)
         bright = style.get(f"terminal.ansi.bright_{base}")
-        if bright and HEX.match(bright) and _relative_luminance(bright) < lb:
-            warnings.append(
-                f"{name}: terminal.ansi.bright_{base} ({bright}) is darker than "
-                f"terminal.ansi.{base} ({b}) — the bright variant should be lighter"
-            )
+        if bright and HEX.match(bright):
+            rbr = contrast_ratio(composite(bright, bg), bg)
+            if rbr < rb:
+                errors.append(
+                    f"{name}: terminal.ansi.bright_{base} ({bright}) is "
+                    f"{rbr:.2f}:1 on the terminal background, weaker than its "
+                    f"base {b} at {rb:.2f}:1 — bold output must not read "
+                    f"fainter than normal output"
+                )
         dim = style.get(f"terminal.ansi.dim_{base}")
-        if base != "black" and dim and HEX.match(dim) and _relative_luminance(dim) > lb:
-            warnings.append(
-                f"{name}: terminal.ansi.dim_{base} ({dim}) is lighter than "
-                f"terminal.ansi.{base} ({b}) — the dim variant should be darker"
-            )
+        if dim and HEX.match(dim):
+            rd = contrast_ratio(composite(dim, bg), bg)
+            if rd >= rb:
+                errors.append(
+                    f"{name}: terminal.ansi.dim_{base} ({dim}) is {rd:.2f}:1 on "
+                    f"the terminal background, stronger than its base {b} at "
+                    f"{rb:.2f}:1 — faint output must recede toward the canvas"
+                )
 
 
 def main() -> int:
@@ -559,8 +586,8 @@ def main() -> int:
         check_players(name, t["style"], errors)
         check_ui_contrast(name, t["style"], errors)
         check_terminal_contrast(name, t["style"], errors)
+        check_terminal_ramp(name, t["style"], errors)
         check_terminal(name, t["style"], warnings)
-        check_terminal_ramp(name, t["style"], warnings)
         check_literal_separation(name, t["style"], warnings)
 
     if warnings:
@@ -575,8 +602,9 @@ def main() -> int:
         return 1
 
     print(f"OK: {path} valid — {len(themes)} variant(s), all colors well-formed,")
-    print("    AA contrast (syntax, UI chrome and base terminal colors), visible")
-    print("    player markers and >= 40 deg accent separation hold in every variant.")
+    print("    AA contrast (syntax, UI chrome, base + bright terminal colors), a")
+    print("    contrast-true bright/dim terminal ramp, visible player markers and")
+    print("    >= 40 deg accent separation hold in every variant.")
     return 0
 
 

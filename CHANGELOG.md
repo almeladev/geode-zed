@@ -50,6 +50,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The `hint` triple is one family.** Hint text is the muted gray, but its
   background and border were sapphire-tinted; they now derive from the same
   gray as the foreground, in both cuts.
+- `validate_theme.py` closes the gap the light terminal slipped through: the
+  bright/dim ramp is now checked in *contrast* terms (dim must carry less
+  contrast than its base, bright at least as much) so it means the same thing
+  on both canvases, `bright_*` must clear AA like the base colors (bold output
+  is still output), and both are hard errors rather than warnings. The black
+  slot stays exempt by convention (`bright_black` is the terminal's mid-gray
+  register, not a "stronger black").
 - `validate_theme.py` now covers the eight collaborator `players` colors, the one
   surface it previously left unchecked: it requires the full set of eight to be
   present, verifies each cursor/block marker stays visible on the editor canvas
